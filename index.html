@@ -29,6 +29,7 @@ body {
     background: #0f2d44;
     color: #ffffff;
     padding: 24px;
+    border-radius: 10px;
 }
 
 .hero h1 {
@@ -102,6 +103,13 @@ label {
     font-weight: bold;
 }
 
+.small-note {
+    margin-top: 4px;
+    margin-bottom: 7px;
+    color: #52616b;
+    font-size: 14px;
+}
+
 .primary-button {
     border: 0;
     background: #0f2d44;
@@ -153,7 +161,7 @@ a:focus {
 
 
 /* =====================================================
-   CALCULATOR BAR
+   TOOL BAR
 ===================================================== */
 
 .tool-bar {
@@ -166,6 +174,7 @@ a:focus {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    border-radius: 8px;
 }
 
 .tool-bar p {
@@ -277,7 +286,7 @@ a:focus {
 
 
 /* =====================================================
-   WHITEBOARD
+   WHITEBOARDS
 ===================================================== */
 
 .whiteboard-panel {
@@ -511,7 +520,7 @@ canvas.whiteboard {
 
 
 <!-- =====================================================
-     START
+     START SCREEN
 ====================================================== -->
 
 <section id="startScreen"
@@ -522,9 +531,10 @@ canvas.whiteboard {
     </h2>
 
     <p>
-        This assessment is designed to show your mathematical thinking,
+        This Prove It is designed to show your mathematical thinking,
         not just your final answers.
     </p>
+
 
     <div class="card green-card">
 
@@ -532,12 +542,47 @@ canvas.whiteboard {
             What Your Teacher Will Review
         </h3>
 
-        <p>☐ Your setup and calculations</p>
+        <p>☐ Your mathematical setup</p>
+        <p>☐ Your calculations</p>
         <p>☐ Your first submitted answers</p>
         <p>☐ Any revisions you make</p>
         <p>☐ Your whiteboard work</p>
         <p>☐ Your short reasoning responses</p>
         <p style="margin-bottom: 0;">☐ How many answer checks you use</p>
+
+    </div>
+
+
+    <div class="card yellow-card">
+
+        <h3 style="margin-top: 0;">
+            Rounding Directions
+        </h3>
+
+        <p>
+            <strong>Percent rates and exponential factors:</strong>
+            Keep them exact when possible.
+        </p>
+
+        <p>
+            Example:
+            8% growth → 0.08 → factor 1.08
+        </p>
+
+        <p>
+            <strong>Money:</strong>
+            Round to the nearest cent.
+        </p>
+
+        <p>
+            <strong>People, animals, followers, or other counts:</strong>
+            Round to the nearest whole number.
+        </p>
+
+        <p style="margin-bottom: 0;">
+            <strong>Other calculated values:</strong>
+            Round to the nearest hundredth unless told otherwise.
+        </p>
 
     </div>
 
@@ -551,8 +596,8 @@ canvas.whiteboard {
         </p>
 
         <p style="margin-bottom: 0;">
-            The calculator can help with arithmetic, but your
-            <strong>whiteboard work must show how you set up the mathematics.</strong>
+            Desmos can help you calculate, but your whiteboard must still show
+            how you set up the mathematics.
         </p>
 
     </div>
@@ -597,26 +642,22 @@ canvas.whiteboard {
      class="hidden no-print">
 
 
-    <!-- CALCULATOR BAR -->
-
     <div class="tool-bar">
 
         <p>
-            <strong>Need a calculator?</strong>
-            Desmos is allowed throughout this activity.
+            <strong>Approved calculator:</strong>
+            Desmos Scientific Calculator
         </p>
 
         <a href="https://www.desmos.com/scientific"
            target="_blank"
            rel="noopener"
            class="desmos-button">
-            Open Desmos Calculator
+            Open Desmos
         </a>
 
     </div>
 
-
-    <!-- PROGRESS -->
 
     <div class="progress-wrap">
 
@@ -625,9 +666,11 @@ canvas.whiteboard {
         </p>
 
         <div class="progress-bar">
+
             <div id="progressFill"
                  class="progress-fill">
             </div>
+
         </div>
 
     </div>
@@ -642,8 +685,6 @@ canvas.whiteboard {
 
         <div class="challenge-layout">
 
-
-            <!-- QUESTION SIDE -->
 
             <main class="card">
 
@@ -662,6 +703,10 @@ canvas.whiteboard {
                     Write the percent as a decimal.
                 </label>
 
+                <p class="small-note">
+                    Enter the exact decimal.
+                </p>
+
                 <input id="c1Decimal"
                        type="number"
                        step="any">
@@ -675,13 +720,17 @@ canvas.whiteboard {
                     What is the exponential factor b?
                 </label>
 
+                <p class="small-note">
+                    Keep the factor exact when possible.
+                </p>
+
                 <input id="c1Factor"
                        type="number"
                        step="any">
 
 
                 <div class="step-title">
-                    Step 3: Show Your Reasoning
+                    Step 3: Explain the Setup
                 </div>
 
                 <div class="card green-card">
@@ -713,8 +762,6 @@ canvas.whiteboard {
             </main>
 
 
-            <!-- WHITEBOARD SIDE -->
-
             <aside class="card whiteboard-panel">
 
                 <h2>
@@ -723,8 +770,8 @@ canvas.whiteboard {
 
                 <div class="whiteboard-required">
                     <strong>Required:</strong>
-                    Show the percent-to-decimal conversion and the
-                    calculation used to find the factor.
+                    Show the percent-to-decimal conversion and the calculation
+                    used to find the exponential factor.
                 </div>
 
                 <canvas id="whiteboard1"
@@ -733,6 +780,7 @@ canvas.whiteboard {
                         height="800"
                         aria-label="Whiteboard for Challenge 1">
                 </canvas>
+
 
                 <div class="whiteboard-controls">
 
@@ -813,6 +861,10 @@ canvas.whiteboard {
                             Factor b
                         </label>
 
+                        <p class="small-note">
+                            Keep the factor exact when possible.
+                        </p>
+
                         <input id="c2B"
                                type="number"
                                step="any">
@@ -853,13 +905,17 @@ canvas.whiteboard {
 
                 <p id="c2PredictionPrompt"></p>
 
+                <p id="c2Rounding"
+                   class="small-note">
+                </p>
+
                 <label for="c2Prediction">
                     Predicted value
                 </label>
 
                 <input id="c2Prediction"
                        type="number"
-                       step="0.01">
+                       step="any">
 
 
                 <div class="card green-card">
@@ -881,6 +937,7 @@ canvas.whiteboard {
                     </button>
                 </p>
 
+
                 <div id="feedback2"
                      class="feedback"
                      aria-live="polite">
@@ -897,8 +954,8 @@ canvas.whiteboard {
 
                 <div class="whiteboard-required">
                     <strong>Required:</strong>
-                    Show how you found the factor, wrote the model,
-                    and evaluated the model for the prediction.
+                    Show how you found the factor, wrote the exponential model,
+                    substituted the number of periods, and calculated the prediction.
                 </div>
 
                 <canvas id="whiteboard2"
@@ -907,6 +964,7 @@ canvas.whiteboard {
                         height="800"
                         aria-label="Whiteboard for Challenge 2">
                 </canvas>
+
 
                 <div class="whiteboard-controls">
 
@@ -960,7 +1018,7 @@ canvas.whiteboard {
                 </h2>
 
                 <p>
-                    Study the exponential model.
+                    Study the exponential model below.
                 </p>
 
                 <div id="c3Model"
@@ -997,10 +1055,13 @@ canvas.whiteboard {
                     What percent change occurs each period?
                 </label>
 
+                <p class="small-note">
+                    Enter the percent, not the decimal.
+                </p>
+
                 <input id="c3Percent"
                        type="number"
-                       step="any"
-                       placeholder="Enter the percent, not the decimal">
+                       step="any">
 
 
                 <label for="c3Type">
@@ -1008,9 +1069,19 @@ canvas.whiteboard {
                 </label>
 
                 <select id="c3Type">
-                    <option value="">Choose one</option>
-                    <option value="growth">Increasing / Growth</option>
-                    <option value="decay">Decreasing / Decay</option>
+
+                    <option value="">
+                        Choose one
+                    </option>
+
+                    <option value="growth">
+                        Increasing / Growth
+                    </option>
+
+                    <option value="decay">
+                        Decreasing / Decay
+                    </option>
+
                 </select>
 
 
@@ -1033,6 +1104,7 @@ canvas.whiteboard {
                     </button>
                 </p>
 
+
                 <div id="feedback3"
                      class="feedback"
                      aria-live="polite">
@@ -1049,7 +1121,7 @@ canvas.whiteboard {
 
                 <div class="whiteboard-required">
                     <strong>Required:</strong>
-                    Show how you used the factor to determine the
+                    Show how you compared b to 1 and calculated the
                     percent increase or decrease.
                 </div>
 
@@ -1059,6 +1131,7 @@ canvas.whiteboard {
                         height="800"
                         aria-label="Whiteboard for Challenge 3">
                 </canvas>
+
 
                 <div class="whiteboard-controls">
 
@@ -1112,8 +1185,8 @@ canvas.whiteboard {
                 </h2>
 
                 <p>
-                    You are given two consecutive values from an exponential model.
-                    Determine the factor, percent change, equation, and a future value.
+                    The table gives two consecutive values from an exponential function.
+                    Use them to determine the factor, percent change, model, and a future value.
                 </p>
 
 
@@ -1150,6 +1223,10 @@ canvas.whiteboard {
                     What is b?
                 </label>
 
+                <p class="small-note">
+                    Keep the factor exact when possible.
+                </p>
+
                 <input id="c4Factor"
                        type="number"
                        step="any">
@@ -1173,9 +1250,19 @@ canvas.whiteboard {
                 </label>
 
                 <select id="c4Type">
-                    <option value="">Choose one</option>
-                    <option value="growth">Growth</option>
-                    <option value="decay">Decay</option>
+
+                    <option value="">
+                        Choose one
+                    </option>
+
+                    <option value="growth">
+                        Growth
+                    </option>
+
+                    <option value="decay">
+                        Decay
+                    </option>
+
                 </select>
 
 
@@ -1212,6 +1299,10 @@ canvas.whiteboard {
                     What is f(4)?
                 </label>
 
+                <p class="small-note">
+                    Round to the nearest hundredth if necessary.
+                </p>
+
                 <input id="c4Prediction"
                        type="number"
                        step="0.01">
@@ -1223,6 +1314,7 @@ canvas.whiteboard {
                         Check My Final Challenge
                     </button>
                 </p>
+
 
                 <div id="feedback4"
                      class="feedback"
@@ -1240,8 +1332,8 @@ canvas.whiteboard {
 
                 <div class="whiteboard-required">
                     <strong>Required:</strong>
-                    Show how you found b, converted it to a percent,
-                    wrote the model, and calculated f(4).
+                    Show how you found b, converted the factor to a percent change,
+                    wrote the model, and evaluated f(4).
                 </div>
 
                 <canvas id="whiteboard4"
@@ -1250,6 +1342,7 @@ canvas.whiteboard {
                         height="800"
                         aria-label="Whiteboard for Challenge 4">
                 </canvas>
+
 
                 <div class="whiteboard-controls">
 
@@ -1294,6 +1387,7 @@ canvas.whiteboard {
 
 <section id="teacherReview">
 
+
     <div class="report-title">
 
         <h1 style="margin: 0;">
@@ -1313,9 +1407,9 @@ canvas.whiteboard {
 
         <p style="margin-bottom: 0;">
             Objective answers were verified by the activity.
-            The final score should be based on the complete evidence record,
-            including setup, whiteboard work, first attempts, revisions,
-            reasoning, and independence.
+            The teacher determines the final proficiency score using the
+            student's first attempts, revisions, whiteboard work,
+            reasoning, calculations, and answer-check history.
         </p>
 
     </div>
@@ -1324,26 +1418,46 @@ canvas.whiteboard {
     <div class="summary-grid">
 
         <div class="summary-item">
+
             <span id="reportStudent"
-                  class="summary-value"></span>
+                  class="summary-value">
+            </span>
+
             Student
+
         </div>
 
+
         <div class="summary-item">
+
             <span id="reportTime"
-                  class="summary-value"></span>
+                  class="summary-value">
+            </span>
+
             Elapsed Time
+
         </div>
 
+
         <div class="summary-item">
+
             <span id="reportChecks"
-                  class="summary-value"></span>
+                  class="summary-value">
+            </span>
+
             Total Checks
+
         </div>
 
+
         <div class="summary-item">
-            <span class="summary-value">4 / 4</span>
+
+            <span class="summary-value">
+                4 / 4
+            </span>
+
             Objective Tasks Verified
+
         </div>
 
     </div>
@@ -1351,8 +1465,6 @@ canvas.whiteboard {
 
     <div id="reportChallenges"></div>
 
-
-    <!-- RUBRIC -->
 
     <div class="card">
 
@@ -1368,44 +1480,69 @@ canvas.whiteboard {
             </tr>
 
             <tr>
-                <td><strong>6</strong></td>
+
+                <td>
+                    <strong>6</strong>
+                </td>
+
                 <td>
                     Independent mastery. Setup, calculations, models,
                     and reasoning are accurate and clearly visible.
                     Little or no corrective feedback was needed.
                 </td>
+
             </tr>
 
             <tr>
-                <td><strong>5</strong></td>
+
+                <td>
+                    <strong>5</strong>
+                </td>
+
                 <td>
                     Proficient and mostly independent.
-                    Mathematical evidence is strong, with only a minor
+                    Mathematical evidence is strong with only a minor
                     correction or small amount of feedback.
                 </td>
+
             </tr>
 
             <tr>
-                <td><strong>4</strong></td>
+
+                <td>
+                    <strong>4</strong>
+                </td>
+
                 <td>
                     Developing proficiency. The student shows meaningful
                     understanding but needs some feedback or revision.
                 </td>
+
             </tr>
 
             <tr>
-                <td><strong>3</strong></td>
+
+                <td>
+                    <strong>3</strong>
+                </td>
+
                 <td>
                     Good-faith completed attempt showing some understanding,
                     but substantial support or repeated feedback was needed.
                 </td>
+
             </tr>
 
             <tr>
-                <td><strong>0</strong></td>
+
+                <td>
+                    <strong>0</strong>
+                </td>
+
                 <td>
                     No usable evidence or no submission.
                 </td>
+
             </tr>
 
         </table>
@@ -1426,6 +1563,7 @@ canvas.whiteboard {
 
         <p>
             <strong>Verification Code:</strong>
+
             <span id="reportVerification"
                   class="verification-code">
             </span>
@@ -1469,6 +1607,7 @@ canvas.whiteboard {
 
 let startTime = null;
 let endTime = null;
+
 let completed = 0;
 let totalChecks = 0;
 
@@ -1516,7 +1655,7 @@ const records = {
 
 
 /* =====================================================
-   MATH HELPERS
+   BASIC HELPERS
 ===================================================== */
 
 function randomFrom(array) {
@@ -1530,9 +1669,15 @@ function randomFrom(array) {
 }
 
 
-function nearlyEqual(a, b, tolerance = 0.011) {
+function nearlyEqual(
+    a,
+    b,
+    tolerance = 0.011
+) {
 
-    return Math.abs(a - b) <= tolerance;
+    return Math.abs(
+        a - b
+    ) <= tolerance;
 }
 
 
@@ -1541,6 +1686,62 @@ function round2(value) {
     return Math.round(
         value * 100
     ) / 100;
+}
+
+
+function roundForContext(
+    value,
+    unit
+) {
+
+    const wholeNumberUnits = [
+        "people",
+        "animals",
+        "followers",
+        "items"
+    ];
+
+
+    if (
+        wholeNumberUnits.includes(unit)
+    ) {
+
+        return Math.round(
+            value
+        );
+    }
+
+
+    return round2(
+        value
+    );
+}
+
+
+function roundingDirection(unit) {
+
+    if (
+        unit === "dollars"
+    ) {
+
+        return "Round to the nearest cent.";
+    }
+
+
+    if (
+        [
+            "people",
+            "animals",
+            "followers",
+            "items"
+        ].includes(unit)
+    ) {
+
+        return "Round to the nearest whole number.";
+    }
+
+
+    return "Round to the nearest hundredth.";
 }
 
 
@@ -1575,57 +1776,93 @@ function makePercentProblem() {
 
 
     return {
+
         rate: rate,
+
         type: type,
+
         decimal: decimal,
-        factor: round2(factor)
+
+        factor:
+            round2(
+                factor
+            )
     };
 }
 
 
 /* =====================================================
-   PROBLEM GENERATION
+   GENERATE PROBLEMS
 ===================================================== */
 
 function generateProblems() {
 
-    /* Challenge 1 */
+    /* -----------------
+       Challenge 1
+    ------------------ */
 
     problems[1] =
         makePercentProblem();
 
 
-    /* Challenge 2 */
+    /* -----------------
+       Challenge 2
+    ------------------ */
 
-    const p2 =
+    const percent2 =
         makePercentProblem();
+
 
     const contexts = [
 
         {
             noun: "a wildlife population",
-            initial: randomFrom([400, 600, 800, 1200]),
+            initial:
+                randomFrom([
+                    400,
+                    600,
+                    800,
+                    1200
+                ]),
             unit: "animals",
             period: "year"
         },
 
         {
             noun: "an online channel",
-            initial: randomFrom([500, 800, 1000, 1500]),
+            initial:
+                randomFrom([
+                    500,
+                    800,
+                    1000,
+                    1500
+                ]),
             unit: "followers",
             period: "month"
         },
 
         {
             noun: "a savings balance",
-            initial: randomFrom([500, 800, 1000, 1200]),
+            initial:
+                randomFrom([
+                    500,
+                    800,
+                    1000,
+                    1200
+                ]),
             unit: "dollars",
             period: "year"
         },
 
         {
             noun: "the value of a device",
-            initial: randomFrom([800, 1000, 1200, 1600]),
+            initial:
+                randomFrom([
+                    800,
+                    1000,
+                    1200,
+                    1600
+                ]),
             unit: "dollars",
             period: "year"
         }
@@ -1634,41 +1871,55 @@ function generateProblems() {
 
 
     const context2 =
-        randomFrom(contexts);
+        randomFrom(
+            contexts
+        );
 
 
     const periods2 =
-        randomFrom([3, 4]);
+        randomFrom([
+            3,
+            4
+        ]);
+
+
+    const rawPrediction2 =
+
+        context2.initial *
+        Math.pow(
+            percent2.factor,
+            periods2
+        );
 
 
     problems[2] = {
 
-        ...p2,
+        ...percent2,
 
         ...context2,
 
-        periods: periods2,
+        periods:
+            periods2,
 
         prediction:
-            round2(
-                context2.initial *
-                Math.pow(
-                    p2.factor,
-                    periods2
-                )
+            roundForContext(
+                rawPrediction2,
+                context2.unit
             )
     };
 
 
-    /* Challenge 3 */
+    /* -----------------
+       Challenge 3
+    ------------------ */
 
-    const p3 =
+    const percent3 =
         makePercentProblem();
 
 
     problems[3] = {
 
-        ...p3,
+        ...percent3,
 
         initial:
             randomFrom([
@@ -1682,9 +1933,11 @@ function generateProblems() {
     };
 
 
-    /* Challenge 4 */
+    /* -----------------
+       Challenge 4
+    ------------------ */
 
-    const p4 =
+    const percent4 =
         makePercentProblem();
 
 
@@ -1700,21 +1953,22 @@ function generateProblems() {
 
     problems[4] = {
 
-        ...p4,
+        ...percent4,
 
-        initial: initial4,
+        initial:
+            initial4,
 
         second:
             round2(
                 initial4 *
-                p4.factor
+                percent4.factor
             ),
 
         prediction:
             round2(
                 initial4 *
                 Math.pow(
-                    p4.factor,
+                    percent4.factor,
                     4
                 )
             )
@@ -1726,7 +1980,7 @@ function generateProblems() {
 
 
 /* =====================================================
-   RENDER PROBLEMS
+   DISPLAY PROBLEMS
 ===================================================== */
 
 function renderProblems() {
@@ -1738,7 +1992,10 @@ function renderProblems() {
     ).innerHTML =
 
         `A quantity experiences a
-        <strong>${problems[1].rate}% ${problems[1].type === "growth" ? "increase" : "decrease"}</strong>
+        <strong>
+        ${problems[1].rate}%
+        ${problems[1].type === "growth" ? "increase" : "decrease"}
+        </strong>
         each period.`;
 
 
@@ -1748,11 +2005,18 @@ function renderProblems() {
         "c2Prompt"
     ).innerHTML =
 
-        `${problems[2].noun} begins with
-        <strong>${problems[2].initial} ${problems[2].unit}</strong>
+        `${problems[2].noun}
+        begins with
+        <strong>
+        ${problems[2].initial}
+        ${problems[2].unit}
+        </strong>
         and
-        <strong>${problems[2].type === "growth" ? "increases" : "decreases"}
-        by ${problems[2].rate}% each ${problems[2].period}</strong>.`;
+        <strong>
+        ${problems[2].type === "growth" ? "increases" : "decreases"}
+        by ${problems[2].rate}%
+        each ${problems[2].period}
+        </strong>.`;
 
 
     document.getElementById(
@@ -1760,7 +2024,19 @@ function renderProblems() {
     ).innerHTML =
 
         `Use your model to predict the value after
-        <strong>${problems[2].periods} ${problems[2].period}${problems[2].periods === 1 ? "" : "s"}</strong>.`;
+        <strong>
+        ${problems[2].periods}
+        ${problems[2].period}${problems[2].periods === 1 ? "" : "s"}
+        </strong>.`;
+
+
+    document.getElementById(
+        "c2Rounding"
+    ).textContent =
+
+        roundingDirection(
+            problems[2].unit
+        );
 
 
     /* Challenge 3 */
@@ -1805,26 +2081,36 @@ function initializeBoard(number) {
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     boards[number] = {
 
         canvas: canvas,
+
         ctx: ctx,
+
         tool: "pen",
+
         drawing: false,
+
         currentStroke: [],
+
         strokes: []
     };
 
 
-    drawBoardBackground(number);
+    drawBoardBackground(
+        number
+    );
 
 
     canvas.addEventListener(
         "mousedown",
         function (event) {
+
             startBoardStroke(
                 number,
                 event
@@ -1836,6 +2122,7 @@ function initializeBoard(number) {
     canvas.addEventListener(
         "mousemove",
         function (event) {
+
             moveBoardStroke(
                 number,
                 event
@@ -1847,7 +2134,10 @@ function initializeBoard(number) {
     window.addEventListener(
         "mouseup",
         function () {
-            stopBoardStroke(number);
+
+            stopBoardStroke(
+                number
+            );
         }
     );
 
@@ -1855,6 +2145,7 @@ function initializeBoard(number) {
     canvas.addEventListener(
         "touchstart",
         function (event) {
+
             startBoardStroke(
                 number,
                 event
@@ -1869,6 +2160,7 @@ function initializeBoard(number) {
     canvas.addEventListener(
         "touchmove",
         function (event) {
+
             moveBoardStroke(
                 number,
                 event
@@ -1883,7 +2175,10 @@ function initializeBoard(number) {
     canvas.addEventListener(
         "touchend",
         function () {
-            stopBoardStroke(number);
+
+            stopBoardStroke(
+                number
+            );
         }
     );
 }
@@ -1931,22 +2226,28 @@ function drawBoardBackground(number) {
 
         ctx.beginPath();
 
+
         ctx.moveTo(
             0,
             y
         );
+
 
         ctx.lineTo(
             canvas.width,
             y
         );
 
+
         ctx.stroke();
     }
 }
 
 
-function boardPoint(number, event) {
+function boardPoint(
+    number,
+    event
+) {
 
     const canvas =
         boards[number].canvas;
@@ -1987,7 +2288,10 @@ function boardPoint(number, event) {
 }
 
 
-function startBoardStroke(number, event) {
+function startBoardStroke(
+    number,
+    event
+) {
 
     event.preventDefault();
 
@@ -2010,19 +2314,27 @@ function startBoardStroke(number, event) {
     board.currentStroke = [{
 
         x: point.x,
+
         y: point.y,
+
         tool: board.tool
     }];
 }
 
 
-function moveBoardStroke(number, event) {
+function moveBoardStroke(
+    number,
+    event
+) {
 
     const board =
         boards[number];
 
 
-    if (!board.drawing) {
+    if (
+        !board.drawing
+    ) {
+
         return;
     }
 
@@ -2046,7 +2358,9 @@ function moveBoardStroke(number, event) {
     const next = {
 
         x: point.x,
+
         y: point.y,
+
         tool: board.tool
     };
 
@@ -2070,7 +2384,10 @@ function stopBoardStroke(number) {
         boards[number];
 
 
-    if (!board.drawing) {
+    if (
+        !board.drawing
+    ) {
+
         return;
     }
 
@@ -2165,6 +2482,7 @@ function undoBoard(number) {
     if (
         board.strokes.length === 0
     ) {
+
         return;
     }
 
@@ -2172,7 +2490,9 @@ function undoBoard(number) {
     board.strokes.pop();
 
 
-    redrawBoard(number);
+    redrawBoard(
+        number
+    );
 }
 
 
@@ -2183,13 +2503,17 @@ function clearBoard(number) {
     boards[number].currentStroke = [];
 
 
-    drawBoardBackground(number);
+    drawBoardBackground(
+        number
+    );
 }
 
 
 function redrawBoard(number) {
 
-    drawBoardBackground(number);
+    drawBoardBackground(
+        number
+    );
 
 
     const board =
@@ -2219,6 +2543,7 @@ function redrawBoard(number) {
 function hasRequiredBoardWork(number) {
 
     const penStrokes =
+
         boards[number].strokes.filter(
             function (stroke) {
 
@@ -2230,7 +2555,9 @@ function hasRequiredBoardWork(number) {
         );
 
 
-    return penStrokes.length >= 2;
+    return (
+        penStrokes.length >= 2
+    );
 }
 
 
@@ -2243,7 +2570,7 @@ function captureBoard(number) {
 
 
 /* =====================================================
-   FEEDBACK
+   FEEDBACK / RECORDING
 ===================================================== */
 
 function setFeedback(
@@ -2286,7 +2613,9 @@ function recordFirstAttempt(
 
 
         records[number].firstWork =
-            captureBoard(number);
+            captureBoard(
+                number
+            );
     }
 }
 
@@ -2305,20 +2634,16 @@ function recordCheck(number) {
 
 function checkChallenge1() {
 
-    const decimal =
-        Number(
-            document.getElementById(
-                "c1Decimal"
-            ).value
-        );
+    const decimalText =
+        document.getElementById(
+            "c1Decimal"
+        ).value.trim();
 
 
-    const factor =
-        Number(
-            document.getElementById(
-                "c1Factor"
-            ).value
-        );
+    const factorText =
+        document.getElementById(
+            "c1Factor"
+        ).value.trim();
 
 
     const reasoning =
@@ -2328,8 +2653,8 @@ function checkChallenge1() {
 
 
     if (
-        !Number.isFinite(decimal) ||
-        !Number.isFinite(factor) ||
+        decimalText === "" ||
+        factorText === "" ||
         reasoning.length < 3
     ) {
 
@@ -2337,6 +2662,33 @@ function checkChallenge1() {
             1,
             false,
             "Complete the decimal rate, factor, and Reasoning Check first."
+        );
+
+        return;
+    }
+
+
+    const decimal =
+        Number(
+            decimalText
+        );
+
+
+    const factor =
+        Number(
+            factorText
+        );
+
+
+    if (
+        !Number.isFinite(decimal) ||
+        !Number.isFinite(factor)
+    ) {
+
+        setFeedback(
+            1,
+            false,
+            "Check your numerical entries."
         );
 
         return;
@@ -2359,7 +2711,7 @@ function checkChallenge1() {
 
     const response =
 
-        `decimal rate=${decimal}; factor=${factor}`;
+        `decimal rate=${decimalText}; factor=${factorText}`;
 
 
     recordFirstAttempt(
@@ -2368,7 +2720,9 @@ function checkChallenge1() {
     );
 
 
-    recordCheck(1);
+    recordCheck(
+        1
+    );
 
 
     const correct =
@@ -2384,7 +2738,9 @@ function checkChallenge1() {
         );
 
 
-    if (correct) {
+    if (
+        correct
+    ) {
 
         records[1].final =
             response;
@@ -2395,7 +2751,9 @@ function checkChallenge1() {
 
 
         records[1].finalWork =
-            captureBoard(1);
+            captureBoard(
+                1
+            );
 
 
         setFeedback(
@@ -2407,7 +2765,10 @@ function checkChallenge1() {
 
         setTimeout(
             function () {
-                advance(1);
+
+                advance(
+                    1
+                );
             },
             500
         );
@@ -2423,9 +2784,9 @@ function checkChallenge1() {
                 : (
                     problems[1].type === "growth"
 
-                        ? "This is an increase. Think about how the decimal rate combines with 1."
+                        ? "This is an increase. Use the decimal rate with 1 to build a growth factor."
 
-                        : "This is a decrease. Think about how the decimal rate combines with 1."
+                        : "This is a decrease. Use the decimal rate with 1 to build a decay factor."
                 );
 
 
@@ -2444,44 +2805,34 @@ function checkChallenge1() {
 
 function checkChallenge2() {
 
-    const a =
-        Number(
-            document.getElementById(
-                "c2A"
-            ).value
-        );
+    const aText =
+        document.getElementById(
+            "c2A"
+        ).value.trim();
 
 
-    const b =
-        Number(
-            document.getElementById(
-                "c2B"
-            ).value
-        );
+    const bText =
+        document.getElementById(
+            "c2B"
+        ).value.trim();
 
 
-    const modelA =
-        Number(
-            document.getElementById(
-                "c2ModelA"
-            ).value
-        );
+    const modelAText =
+        document.getElementById(
+            "c2ModelA"
+        ).value.trim();
 
 
-    const modelB =
-        Number(
-            document.getElementById(
-                "c2ModelB"
-            ).value
-        );
+    const modelBText =
+        document.getElementById(
+            "c2ModelB"
+        ).value.trim();
 
 
-    const prediction =
-        Number(
-            document.getElementById(
-                "c2Prediction"
-            ).value
-        );
+    const predictionText =
+        document.getElementById(
+            "c2Prediction"
+        ).value.trim();
 
 
     const reasoning =
@@ -2491,11 +2842,11 @@ function checkChallenge2() {
 
 
     if (
-        !Number.isFinite(a) ||
-        !Number.isFinite(b) ||
-        !Number.isFinite(modelA) ||
-        !Number.isFinite(modelB) ||
-        !Number.isFinite(prediction) ||
+        aText === "" ||
+        bText === "" ||
+        modelAText === "" ||
+        modelBText === "" ||
+        predictionText === "" ||
         reasoning.length < 3
     ) {
 
@@ -2509,6 +2860,54 @@ function checkChallenge2() {
     }
 
 
+    const a =
+        Number(
+            aText
+        );
+
+
+    const b =
+        Number(
+            bText
+        );
+
+
+    const modelA =
+        Number(
+            modelAText
+        );
+
+
+    const modelB =
+        Number(
+            modelBText
+        );
+
+
+    const prediction =
+        Number(
+            predictionText
+        );
+
+
+    if (
+        !Number.isFinite(a) ||
+        !Number.isFinite(b) ||
+        !Number.isFinite(modelA) ||
+        !Number.isFinite(modelB) ||
+        !Number.isFinite(prediction)
+    ) {
+
+        setFeedback(
+            2,
+            false,
+            "Check your numerical entries."
+        );
+
+        return;
+    }
+
+
     if (
         !hasRequiredBoardWork(2)
     ) {
@@ -2516,7 +2915,7 @@ function checkChallenge2() {
         setFeedback(
             2,
             false,
-            "Use the whiteboard to show the factor calculation, model setup, and prediction work before checking."
+            "Use the whiteboard to show the factor calculation, model setup, substitution, and prediction work before checking."
         );
 
         return;
@@ -2525,7 +2924,7 @@ function checkChallenge2() {
 
     const response =
 
-        `a=${a}; b=${b}; model=${modelA}(${modelB})^x; prediction=${prediction}`;
+        `a=${aText}; b=${bText}; model=${modelAText}(${modelBText})^x; prediction=${predictionText}`;
 
 
     recordFirstAttempt(
@@ -2534,7 +2933,25 @@ function checkChallenge2() {
     );
 
 
-    recordCheck(2);
+    recordCheck(
+        2
+    );
+
+
+    const predictionTolerance =
+
+        [
+            "people",
+            "animals",
+            "followers",
+            "items"
+        ].includes(
+            problems[2].unit
+        )
+
+            ? 0.51
+
+            : 0.011;
 
 
     const correct =
@@ -2562,11 +2979,13 @@ function checkChallenge2() {
         nearlyEqual(
             prediction,
             problems[2].prediction,
-            0.02
+            predictionTolerance
         );
 
 
-    if (correct) {
+    if (
+        correct
+    ) {
 
         records[2].final =
             response;
@@ -2577,7 +2996,9 @@ function checkChallenge2() {
 
 
         records[2].finalWork =
-            captureBoard(2);
+            captureBoard(
+                2
+            );
 
 
         setFeedback(
@@ -2589,7 +3010,10 @@ function checkChallenge2() {
 
         setTimeout(
             function () {
-                advance(2);
+
+                advance(
+                    2
+                );
             },
             500
         );
@@ -2602,7 +3026,7 @@ function checkChallenge2() {
 
                 ? "Check the initial value and the percent-to-factor conversion."
 
-                : `Then evaluate your model at x=${problems[2].periods}.`;
+                : `Then substitute x=${problems[2].periods} into your model and follow the rounding direction.`;
 
 
         setFeedback(
@@ -2620,28 +3044,22 @@ function checkChallenge2() {
 
 function checkChallenge3() {
 
-    const initial =
-        Number(
-            document.getElementById(
-                "c3Initial"
-            ).value
-        );
+    const initialText =
+        document.getElementById(
+            "c3Initial"
+        ).value.trim();
 
 
-    const factor =
-        Number(
-            document.getElementById(
-                "c3Factor"
-            ).value
-        );
+    const factorText =
+        document.getElementById(
+            "c3Factor"
+        ).value.trim();
 
 
-    const percent =
-        Number(
-            document.getElementById(
-                "c3Percent"
-            ).value
-        );
+    const percentText =
+        document.getElementById(
+            "c3Percent"
+        ).value.trim();
 
 
     const type =
@@ -2657,9 +3075,9 @@ function checkChallenge3() {
 
 
     if (
-        !Number.isFinite(initial) ||
-        !Number.isFinite(factor) ||
-        !Number.isFinite(percent) ||
+        initialText === "" ||
+        factorText === "" ||
+        percentText === "" ||
         type === "" ||
         reasoning.length < 3
     ) {
@@ -2668,6 +3086,40 @@ function checkChallenge3() {
             3,
             false,
             "Complete every part and the short Reasoning Check before checking."
+        );
+
+        return;
+    }
+
+
+    const initial =
+        Number(
+            initialText
+        );
+
+
+    const factor =
+        Number(
+            factorText
+        );
+
+
+    const percent =
+        Number(
+            percentText
+        );
+
+
+    if (
+        !Number.isFinite(initial) ||
+        !Number.isFinite(factor) ||
+        !Number.isFinite(percent)
+    ) {
+
+        setFeedback(
+            3,
+            false,
+            "Check your numerical entries."
         );
 
         return;
@@ -2690,7 +3142,7 @@ function checkChallenge3() {
 
     const response =
 
-        `initial=${initial}; factor=${factor}; percent=${percent}%; type=${type}`;
+        `initial=${initialText}; factor=${factorText}; percent=${percentText}%; type=${type}`;
 
 
     recordFirstAttempt(
@@ -2699,7 +3151,9 @@ function checkChallenge3() {
     );
 
 
-    recordCheck(3);
+    recordCheck(
+        3
+    );
 
 
     const correct =
@@ -2723,7 +3177,9 @@ function checkChallenge3() {
             problems[3].type;
 
 
-    if (correct) {
+    if (
+        correct
+    ) {
 
         records[3].final =
             response;
@@ -2734,7 +3190,9 @@ function checkChallenge3() {
 
 
         records[3].finalWork =
-            captureBoard(3);
+            captureBoard(
+                3
+            );
 
 
         setFeedback(
@@ -2746,7 +3204,10 @@ function checkChallenge3() {
 
         setTimeout(
             function () {
-                advance(3);
+
+                advance(
+                    3
+                );
             },
             500
         );
@@ -2777,20 +3238,16 @@ function checkChallenge3() {
 
 function checkChallenge4() {
 
-    const factor =
-        Number(
-            document.getElementById(
-                "c4Factor"
-            ).value
-        );
+    const factorText =
+        document.getElementById(
+            "c4Factor"
+        ).value.trim();
 
 
-    const percent =
-        Number(
-            document.getElementById(
-                "c4Percent"
-            ).value
-        );
+    const percentText =
+        document.getElementById(
+            "c4Percent"
+        ).value.trim();
 
 
     const type =
@@ -2799,34 +3256,76 @@ function checkChallenge4() {
         ).value;
 
 
+    const modelAText =
+        document.getElementById(
+            "c4ModelA"
+        ).value.trim();
+
+
+    const modelBText =
+        document.getElementById(
+            "c4ModelB"
+        ).value.trim();
+
+
+    const predictionText =
+        document.getElementById(
+            "c4Prediction"
+        ).value.trim();
+
+
+    if (
+        factorText === "" ||
+        percentText === "" ||
+        type === "" ||
+        modelAText === "" ||
+        modelBText === "" ||
+        predictionText === ""
+    ) {
+
+        setFeedback(
+            4,
+            false,
+            "Complete every part of the final challenge before checking."
+        );
+
+        return;
+    }
+
+
+    const factor =
+        Number(
+            factorText
+        );
+
+
+    const percent =
+        Number(
+            percentText
+        );
+
+
     const modelA =
         Number(
-            document.getElementById(
-                "c4ModelA"
-            ).value
+            modelAText
         );
 
 
     const modelB =
         Number(
-            document.getElementById(
-                "c4ModelB"
-            ).value
+            modelBText
         );
 
 
     const prediction =
         Number(
-            document.getElementById(
-                "c4Prediction"
-            ).value
+            predictionText
         );
 
 
     if (
         !Number.isFinite(factor) ||
         !Number.isFinite(percent) ||
-        type === "" ||
         !Number.isFinite(modelA) ||
         !Number.isFinite(modelB) ||
         !Number.isFinite(prediction)
@@ -2835,7 +3334,7 @@ function checkChallenge4() {
         setFeedback(
             4,
             false,
-            "Complete every part of the final challenge before checking."
+            "Check your numerical entries."
         );
 
         return;
@@ -2858,7 +3357,7 @@ function checkChallenge4() {
 
     const response =
 
-        `factor=${factor}; percent=${percent}%; type=${type}; model=${modelA}(${modelB})^x; f(4)=${prediction}`;
+        `factor=${factorText}; percent=${percentText}%; type=${type}; model=${modelAText}(${modelBText})^x; f(4)=${predictionText}`;
 
 
     recordFirstAttempt(
@@ -2867,7 +3366,9 @@ function checkChallenge4() {
     );
 
 
-    recordCheck(4);
+    recordCheck(
+        4
+    );
 
 
     const correct =
@@ -2898,18 +3399,22 @@ function checkChallenge4() {
         nearlyEqual(
             prediction,
             problems[4].prediction,
-            0.02
+            0.011
         );
 
 
-    if (correct) {
+    if (
+        correct
+    ) {
 
         records[4].final =
             response;
 
 
         records[4].finalWork =
-            captureBoard(4);
+            captureBoard(
+                4
+            );
 
 
         setFeedback(
@@ -3008,7 +3513,7 @@ function updateProgress() {
 
 
 /* =====================================================
-   FINISH / REPORT
+   FINISH
 ===================================================== */
 
 function finishAssessment() {
@@ -3051,6 +3556,10 @@ function finishAssessment() {
 }
 
 
+/* =====================================================
+   REPORT
+===================================================== */
+
 function formatElapsed(milliseconds) {
 
     const seconds =
@@ -3068,6 +3577,7 @@ function formatElapsed(milliseconds) {
 
 
     return (
+
         minutes +
         " min " +
         (
@@ -3236,7 +3746,7 @@ function buildReport() {
         `f(x) = ${problems[2].initial}` +
         `(${problems[2].factor})^x; ` +
         `prediction after ${problems[2].periods} periods = ` +
-        `${problems[2].prediction}`;
+        `${problems[2].prediction} ${problems[2].unit}`;
 
 
     const challenge3Solution =
@@ -3361,7 +3871,9 @@ document.getElementById(
             i++
         ) {
 
-            initializeBoard(i);
+            initializeBoard(
+                i
+            );
         }
 
 
