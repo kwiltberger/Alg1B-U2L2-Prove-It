@@ -3,458 +3,3371 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>U2L2 Prove It!</title>
+
+<title>U2L2 Prove It! — Percent Change & Exponential Models</title>
 
 <style>
-*{box-sizing:border-box}
-body{margin:0;padding:22px;background:#f6f9fb;color:#1f2933;font-family:Arial,sans-serif;line-height:1.55}
-.wrap{max-width:1000px;margin:auto}
-.hero{background:#0f2d44;color:white;padding:24px}
-.card{background:white;border:1px solid #d6e6ef;border-radius:10px;padding:20px;margin-top:18px}
-.blue{background:#f0f7fb;border-left:6px solid #2f80a8}
-.green{background:#eefaf1;border-left:6px solid #3ca65c}
-.yellow{background:#fff8e6;border-left:6px solid #f2b705}
-h2,h3{color:#0f2d44}
-input,select,textarea{width:100%;padding:9px;border:1px solid #9aabb5;border-radius:6px;font:16px Arial}
-label{display:block;font-weight:bold;margin-top:12px}
-button{font:16px Arial;cursor:pointer}
-.primary{border:0;background:#0f2d44;color:white;padding:12px 18px;border-radius:8px}
-.challenge{display:none}
-.challenge.active{display:block}
-.hidden{display:none!important}
-.feedback{display:none;padding:14px;margin-top:14px;border-radius:8px}
-.feedback.good{display:block;background:#eefaf1;border-left:6px solid #3ca65c}
-.feedback.bad{display:block;background:#fff8e6;border-left:6px solid #f2b705}
-.progress{height:18px;background:#d6e6ef;border-radius:10px;overflow:hidden}
-#bar{height:100%;width:0;background:#3ca65c}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.report-table{width:100%;border-collapse:collapse}
-.report-table th,.report-table td{border:1px solid #d6e6ef;padding:9px;text-align:left;vertical-align:top}
-.report-table th{background:#f0f7fb;width:28%}
-#review{display:none}
-@media(max-width:650px){.grid{grid-template-columns:1fr}}
-@media print{
-.no-print{display:none!important}
-#review{display:block!important}
-body{padding:0;background:white}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 22px;
+    background: #f6f9fb;
+    color: #1f2933;
+    font-family: Arial, sans-serif;
+    line-height: 1.55;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.hero {
+    background: #0f2d44;
+    color: #ffffff;
+    padding: 24px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.hero p {
+    margin: 6px 0 0;
+    font-size: 18px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #d6e6ef;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 18px;
+}
+
+.blue-card {
+    background: #f0f7fb;
+    border-left: 6px solid #2f80a8;
+}
+
+.green-card {
+    background: #eefaf1;
+    border-left: 6px solid #3ca65c;
+}
+
+.yellow-card {
+    background: #fff8e6;
+    border-left: 6px solid #f2b705;
+}
+
+.gray-card {
+    background: #f6f9fb;
+    border-left: 6px solid #d6e6ef;
+}
+
+h2,
+h3 {
+    color: #0f2d44;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: Arial, sans-serif;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #9aabb5;
+    border-radius: 6px;
+    padding: 9px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 72px;
+    resize: vertical;
+}
+
+label {
+    display: block;
+    margin-top: 13px;
+    font-weight: bold;
+}
+
+.primary-button {
+    border: 0;
+    background: #0f2d44;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.secondary-button {
+    border: 1px solid #0f2d44;
+    background: #ffffff;
+    color: #0f2d44;
+    padding: 9px 13px;
+    border-radius: 7px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.desmos-button {
+    display: inline-block;
+    background: #ffffff;
+    color: #0f2d44;
+    border: 2px solid #0f2d44;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.desmos-button:hover,
+.desmos-button:focus {
+    background: #f0f7fb;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+    outline: 3px solid #b7d7e8;
+    outline-offset: 2px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   CALCULATOR BAR
+===================================================== */
+
+.tool-bar {
+    background: #fff8e6;
+    border-left: 6px solid #f2b705;
+    padding: 14px;
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tool-bar p {
+    margin: 0;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-wrap {
+    margin-top: 18px;
+}
+
+.progress-bar {
+    height: 18px;
+    background: #d6e6ef;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #3ca65c;
+    transition: width 0.3s ease;
+}
+
+
+/* =====================================================
+   CHALLENGES
+===================================================== */
+
+.challenge {
+    display: none;
+}
+
+.challenge.active {
+    display: block;
+}
+
+.challenge-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 410px;
+    gap: 20px;
+    align-items: start;
+}
+
+.step-title {
+    color: #0f2d44;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 22px;
+}
+
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.setup-box {
+    background: #f6f9fb;
+    padding: 14px;
+    border-radius: 8px;
+}
+
+.equation-builder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 24px;
+    margin: 18px 0;
+}
+
+.equation-builder input {
+    width: 100px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.math-display {
+    text-align: center;
+    font-size: 27px;
+    margin: 20px 0;
+}
+
+.feedback {
+    display: none;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+.feedback.correct {
+    display: block;
+    background: #eefaf1;
+    border-left: 6px solid #3ca65c;
+}
+
+.feedback.incorrect {
+    display: block;
+    background: #fff8e6;
+    border-left: 6px solid #f2b705;
+}
+
+
+/* =====================================================
+   WHITEBOARD
+===================================================== */
+
+.whiteboard-panel {
+    position: sticky;
+    top: 14px;
+}
+
+.whiteboard-required {
+    background: #fff8e6;
+    border-left: 6px solid #f2b705;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+canvas.whiteboard {
+    display: block;
+    width: 100%;
+    height: 390px;
+    background: #ffffff;
+    border: 2px solid #71838e;
+    touch-action: none;
+}
+
+.whiteboard-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+
+/* =====================================================
+   TABLES
+===================================================== */
+
+.data-table {
+    border-collapse: collapse;
+    margin: 16px auto;
+    text-align: center;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #9aabb5;
+    padding: 9px 14px;
+}
+
+
+/* =====================================================
+   REPORT
+===================================================== */
+
+#teacherReview {
+    display: none;
+}
+
+.report-title {
+    background: #0f2d44;
+    color: #ffffff;
+    padding: 22px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.summary-item {
+    background: #f0f7fb;
+    border: 1px solid #d6e6ef;
+    padding: 13px;
+    text-align: center;
+}
+
+.summary-value {
+    display: block;
+    color: #0f2d44;
+    font-size: 20px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.report-problem {
+    background: #ffffff;
+    border: 2px solid #d6e6ef;
+    padding: 18px;
+    margin-top: 20px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid #d6e6ef;
+    padding: 9px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.report-table th {
+    width: 29%;
+    background: #f0f7fb;
+}
+
+.work-image {
+    display: block;
+    max-width: 100%;
+    max-height: 420px;
+    margin: 12px auto;
+    border: 1px solid #9aabb5;
+}
+
+.evidence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.evidence-box {
+    background: #f6f9fb;
+    padding: 12px;
+    border: 1px solid #d6e6ef;
+}
+
+.rubric-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rubric-table th,
+.rubric-table td {
+    border: 1px solid #d6e6ef;
+    padding: 10px;
+    text-align: left;
+}
+
+.rubric-table th {
+    background: #0f2d44;
+    color: #ffffff;
+}
+
+.verification-code {
+    display: inline-block;
+    font-family: monospace;
+    background: #f6f9fb;
+    padding: 7px 10px;
+}
+
+.print-area {
+    text-align: center;
+    margin: 24px 0;
+}
+
+
+@media (max-width: 900px) {
+
+    .challenge-layout,
+    .setup-grid,
+    .summary-grid,
+    .evidence-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .whiteboard-panel {
+        position: static;
+    }
+}
+
+
+@media print {
+
+    @page {
+        margin: 0.45in;
+    }
+
+    body {
+        padding: 0;
+        background: #ffffff;
+        font-size: 11pt;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    #teacherReview {
+        display: block !important;
+    }
+
+    .report-problem {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .work-image {
+        max-height: 300px;
+    }
 }
 </style>
 </head>
 
+
 <body>
-<div class="wrap">
 
-<div class="hero no-print">
-<h1 style="margin:0;">Percent Change &amp; Exponential Models Prove It!</h1>
-<p>Algebra 1B | Unit 2 | Lesson 2</p>
-</div>
+<div class="container">
 
-<section id="start" class="card blue no-print">
-<h2>Show What You Know</h2>
-<p>
-Your teacher will review your first attempts, revisions, calculations,
-reasoning, and answer-check history.
-</p>
 
-<label for="name">First and Last Name</label>
-<input id="name" type="text">
+<!-- =====================================================
+     HERO
+====================================================== -->
 
-<p><button class="primary" onclick="begin()">Begin Prove It!</button></p>
-</section>
+<header class="hero no-print">
 
-<div id="activity" class="hidden no-print">
+    <h1>
+        Percent Change &amp; Exponential Models Prove It!
+    </h1>
 
-<p id="progressText"><strong>Progress:</strong> 0 of 4</p>
-<div class="progress"><div id="bar"></div></div>
+    <p>
+        Algebra 1B | Unit 2 | Lesson 2
+    </p>
 
-<section id="c1" class="card challenge active">
+</header>
 
-<h2>Challenge 1 — Percent → Factor</h2>
 
-<p id="c1Prompt"></p>
+<!-- =====================================================
+     START
+====================================================== -->
 
-<div class="grid">
-<div>
-<label for="c1Rate">Percent written as a decimal</label>
-<input id="c1Rate" type="number" step="any">
-</div>
+<section id="startScreen"
+         class="card blue-card no-print">
 
-<div>
-<label for="c1Factor">Exponential factor</label>
-<input id="c1Factor" type="number" step="any">
-</div>
-</div>
+    <h2>
+        Show What You Know
+    </h2>
 
-<label for="c1Reason">Reasoning Check: What operation did you use with 1?</label>
-<input id="c1Reason" type="text" placeholder="Example: add the decimal rate to 1">
+    <p>
+        This assessment is designed to show your mathematical thinking,
+        not just your final answers.
+    </p>
 
-<p><button class="primary" onclick="check1()">Check My Work</button></p>
-<div id="f1" class="feedback"></div>
+    <div class="card green-card">
 
-</section>
+        <h3 style="margin-top: 0;">
+            What Your Teacher Will Review
+        </h3>
 
-<section id="c2" class="card challenge">
+        <p>☐ Your setup and calculations</p>
+        <p>☐ Your first submitted answers</p>
+        <p>☐ Any revisions you make</p>
+        <p>☐ Your whiteboard work</p>
+        <p>☐ Your short reasoning responses</p>
+        <p style="margin-bottom: 0;">☐ How many answer checks you use</p>
 
-<h2>Challenge 2 — Write a Model From a Situation</h2>
+    </div>
 
-<p id="c2Prompt"></p>
 
-<div class="grid">
-<div>
-<label for="c2A">Initial value a</label>
-<input id="c2A" type="number" step="any">
-</div>
+    <div class="card yellow-card">
 
-<div>
-<label for="c2B">Factor b</label>
-<input id="c2B" type="number" step="any">
-</div>
-</div>
+        <strong>Calculator Use Is Allowed</strong>
 
-<label for="c2Setup">Show your model</label>
-<input id="c2Setup" type="text" placeholder="Example: P(t)=800(1.06)^t">
+        <p>
+            You may use the Desmos Scientific Calculator during this Prove It.
+        </p>
 
-<label for="c2Future">Value after 3 periods</label>
-<input id="c2Future" type="number" step="0.01">
+        <p style="margin-bottom: 0;">
+            The calculator can help with arithmetic, but your
+            <strong>whiteboard work must show how you set up the mathematics.</strong>
+        </p>
 
-<label for="c2Reason">Reasoning Check: What does the exponent 3 represent?</label>
-<input id="c2Reason" type="text">
+    </div>
 
-<p><button class="primary" onclick="check2()">Check My Model</button></p>
-<div id="f2" class="feedback"></div>
 
-</section>
+    <p style="text-align: center; margin-top: 18px;">
 
-<section id="c3" class="card challenge">
+        <a href="https://www.desmos.com/scientific"
+           target="_blank"
+           rel="noopener"
+           class="desmos-button">
+            Open Desmos Scientific Calculator
+        </a>
 
-<h2>Challenge 3 — Interpret the Model</h2>
+    </p>
 
-<div id="c3Model" style="font-size:26px;text-align:center;margin:18px;"></div>
 
-<label for="c3Initial">Initial value</label>
-<input id="c3Initial" type="number">
+    <label for="studentName">
+        First and Last Name
+    </label>
 
-<label for="c3Percent">Percent change</label>
-<input id="c3Percent" type="number" step="any" placeholder="Enter the percent, not decimal">
+    <input id="studentName"
+           type="text"
+           autocomplete="name">
 
-<label for="c3Type">Type of change</label>
-<select id="c3Type">
-<option value="">Choose</option>
-<option value="growth">Growth</option>
-<option value="decay">Decay</option>
-</select>
 
-<label for="c3Reason">Reasoning Check: How did you get the percent from b?</label>
-<input id="c3Reason" type="text">
-
-<p><button class="primary" onclick="check3()">Check My Interpretation</button></p>
-<div id="f3" class="feedback"></div>
+    <p>
+        <button id="beginButton"
+                class="primary-button">
+            Begin Prove It!
+        </button>
+    </p>
 
 </section>
 
-<section id="c4" class="card challenge">
 
-<h2>Challenge 4 — Reverse the Model</h2>
+<!-- =====================================================
+     ACTIVITY
+====================================================== -->
 
-<p>
-The table shows the value at the start and after one time period.
-Use it to determine the percent change and write the exponential model.
-</p>
+<div id="activity"
+     class="hidden no-print">
 
-<table style="border-collapse:collapse;margin:15px auto;text-align:center;">
-<tr>
-<th style="border:1px solid #9aabb5;padding:9px;">x</th>
-<td style="border:1px solid #9aabb5;padding:9px;">0</td>
-<td style="border:1px solid #9aabb5;padding:9px;">1</td>
-</tr>
-<tr>
-<th style="border:1px solid #9aabb5;padding:9px;">y</th>
-<td id="c4Y0" style="border:1px solid #9aabb5;padding:9px;"></td>
-<td id="c4Y1" style="border:1px solid #9aabb5;padding:9px;"></td>
-</tr>
-</table>
 
-<label for="c4Factor">Factor b</label>
-<input id="c4Factor" type="number" step="any">
+    <!-- CALCULATOR BAR -->
 
-<label for="c4Percent">Percent change</label>
-<input id="c4Percent" type="number" step="any">
+    <div class="tool-bar">
 
-<label for="c4Type">Growth or decay?</label>
-<select id="c4Type">
-<option value="">Choose</option>
-<option value="growth">Growth</option>
-<option value="decay">Decay</option>
-</select>
+        <p>
+            <strong>Need a calculator?</strong>
+            Desmos is allowed throughout this activity.
+        </p>
 
-<label for="c4Model">Write the model</label>
-<input id="c4Model" type="text">
+        <a href="https://www.desmos.com/scientific"
+           target="_blank"
+           rel="noopener"
+           class="desmos-button">
+            Open Desmos Calculator
+        </a>
 
-<p><button class="primary" onclick="check4()">Check My Final Challenge</button></p>
-<div id="f4" class="feedback"></div>
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-wrap">
+
+        <p id="progressText">
+            <strong>Progress:</strong> 0 of 4 challenges completed
+        </p>
+
+        <div class="progress-bar">
+            <div id="progressFill"
+                 class="progress-fill">
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CHALLENGE 1
+    ================================================== -->
+
+    <section id="challenge1"
+             class="challenge active">
+
+        <div class="challenge-layout">
+
+
+            <!-- QUESTION SIDE -->
+
+            <main class="card">
+
+                <h2>
+                    Challenge 1 — Build the Multiplier
+                </h2>
+
+                <p id="c1Prompt"></p>
+
+
+                <div class="step-title">
+                    Step 1: Convert the Percent
+                </div>
+
+                <label for="c1Decimal">
+                    Write the percent as a decimal.
+                </label>
+
+                <input id="c1Decimal"
+                       type="number"
+                       step="any">
+
+
+                <div class="step-title">
+                    Step 2: Find the Exponential Factor
+                </div>
+
+                <label for="c1Factor">
+                    What is the exponential factor b?
+                </label>
+
+                <input id="c1Factor"
+                       type="number"
+                       step="any">
+
+
+                <div class="step-title">
+                    Step 3: Show Your Reasoning
+                </div>
+
+                <div class="card green-card">
+
+                    <label for="c1Reasoning">
+                        What did you do with the decimal rate and 1?
+                    </label>
+
+                    <input id="c1Reasoning"
+                           type="text"
+                           placeholder="A short mathematical statement is enough.">
+
+                </div>
+
+
+                <p>
+                    <button class="primary-button"
+                            onclick="checkChallenge1()">
+                        Check My Work
+                    </button>
+                </p>
+
+
+                <div id="feedback1"
+                     class="feedback"
+                     aria-live="polite">
+                </div>
+
+            </main>
+
+
+            <!-- WHITEBOARD SIDE -->
+
+            <aside class="card whiteboard-panel">
+
+                <h2>
+                    Show Your Work
+                </h2>
+
+                <div class="whiteboard-required">
+                    <strong>Required:</strong>
+                    Show the percent-to-decimal conversion and the
+                    calculation used to find the factor.
+                </div>
+
+                <canvas id="whiteboard1"
+                        class="whiteboard"
+                        width="800"
+                        height="800"
+                        aria-label="Whiteboard for Challenge 1">
+                </canvas>
+
+                <div class="whiteboard-controls">
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(1,'pen')">
+                        Pen
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(1,'eraser')">
+                        Eraser
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="undoBoard(1)">
+                        Undo
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="clearBoard(1)">
+                        Clear
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CHALLENGE 2
+    ================================================== -->
+
+    <section id="challenge2"
+             class="challenge">
+
+        <div class="challenge-layout">
+
+
+            <main class="card">
+
+                <h2>
+                    Challenge 2 — Build a Model From a Situation
+                </h2>
+
+                <p id="c2Prompt"></p>
+
+
+                <div class="step-title">
+                    Step 1: Identify the Model Parts
+                </div>
+
+                <div class="setup-grid">
+
+                    <div class="setup-box">
+
+                        <label for="c2A">
+                            Initial value a
+                        </label>
+
+                        <input id="c2A"
+                               type="number"
+                               step="any">
+
+                    </div>
+
+
+                    <div class="setup-box">
+
+                        <label for="c2B">
+                            Factor b
+                        </label>
+
+                        <input id="c2B"
+                               type="number"
+                               step="any">
+
+                    </div>
+
+                </div>
+
+
+                <div class="step-title">
+                    Step 2: Create the Model
+                </div>
+
+                <div class="equation-builder">
+
+                    <span>f(x) =</span>
+
+                    <input id="c2ModelA"
+                           type="number"
+                           step="any"
+                           aria-label="Initial value in exponential model">
+
+                    <span>(</span>
+
+                    <input id="c2ModelB"
+                           type="number"
+                           step="any"
+                           aria-label="Factor in exponential model">
+
+                    <span>)<sup>x</sup></span>
+
+                </div>
+
+
+                <div class="step-title">
+                    Step 3: Make a Prediction
+                </div>
+
+                <p id="c2PredictionPrompt"></p>
+
+                <label for="c2Prediction">
+                    Predicted value
+                </label>
+
+                <input id="c2Prediction"
+                       type="number"
+                       step="0.01">
+
+
+                <div class="card green-card">
+
+                    <label for="c2Reasoning">
+                        What does the exponent represent in this situation?
+                    </label>
+
+                    <input id="c2Reasoning"
+                           type="text">
+
+                </div>
+
+
+                <p>
+                    <button class="primary-button"
+                            onclick="checkChallenge2()">
+                        Check My Model
+                    </button>
+                </p>
+
+                <div id="feedback2"
+                     class="feedback"
+                     aria-live="polite">
+                </div>
+
+            </main>
+
+
+            <aside class="card whiteboard-panel">
+
+                <h2>
+                    Show Your Work
+                </h2>
+
+                <div class="whiteboard-required">
+                    <strong>Required:</strong>
+                    Show how you found the factor, wrote the model,
+                    and evaluated the model for the prediction.
+                </div>
+
+                <canvas id="whiteboard2"
+                        class="whiteboard"
+                        width="800"
+                        height="800"
+                        aria-label="Whiteboard for Challenge 2">
+                </canvas>
+
+                <div class="whiteboard-controls">
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(2,'pen')">
+                        Pen
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(2,'eraser')">
+                        Eraser
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="undoBoard(2)">
+                        Undo
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="clearBoard(2)">
+                        Clear
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CHALLENGE 3
+    ================================================== -->
+
+    <section id="challenge3"
+             class="challenge">
+
+        <div class="challenge-layout">
+
+
+            <main class="card">
+
+                <h2>
+                    Challenge 3 — Interpret the Model
+                </h2>
+
+                <p>
+                    Study the exponential model.
+                </p>
+
+                <div id="c3Model"
+                     class="math-display">
+                </div>
+
+
+                <div class="step-title">
+                    Step 1: Interpret the Parameters
+                </div>
+
+                <label for="c3Initial">
+                    What is the initial value?
+                </label>
+
+                <input id="c3Initial"
+                       type="number">
+
+
+                <label for="c3Factor">
+                    What is the exponential factor?
+                </label>
+
+                <input id="c3Factor"
+                       type="number"
+                       step="any">
+
+
+                <div class="step-title">
+                    Step 2: Recover the Percent Change
+                </div>
+
+                <label for="c3Percent">
+                    What percent change occurs each period?
+                </label>
+
+                <input id="c3Percent"
+                       type="number"
+                       step="any"
+                       placeholder="Enter the percent, not the decimal">
+
+
+                <label for="c3Type">
+                    Is the quantity increasing or decreasing?
+                </label>
+
+                <select id="c3Type">
+                    <option value="">Choose one</option>
+                    <option value="growth">Increasing / Growth</option>
+                    <option value="decay">Decreasing / Decay</option>
+                </select>
+
+
+                <div class="card green-card">
+
+                    <label for="c3Reasoning">
+                        What calculation did you use to get the percent from b?
+                    </label>
+
+                    <input id="c3Reasoning"
+                           type="text">
+
+                </div>
+
+
+                <p>
+                    <button class="primary-button"
+                            onclick="checkChallenge3()">
+                        Check My Interpretation
+                    </button>
+                </p>
+
+                <div id="feedback3"
+                     class="feedback"
+                     aria-live="polite">
+                </div>
+
+            </main>
+
+
+            <aside class="card whiteboard-panel">
+
+                <h2>
+                    Show Your Work
+                </h2>
+
+                <div class="whiteboard-required">
+                    <strong>Required:</strong>
+                    Show how you used the factor to determine the
+                    percent increase or decrease.
+                </div>
+
+                <canvas id="whiteboard3"
+                        class="whiteboard"
+                        width="800"
+                        height="800"
+                        aria-label="Whiteboard for Challenge 3">
+                </canvas>
+
+                <div class="whiteboard-controls">
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(3,'pen')">
+                        Pen
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(3,'eraser')">
+                        Eraser
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="undoBoard(3)">
+                        Undo
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="clearBoard(3)">
+                        Clear
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CHALLENGE 4
+    ================================================== -->
+
+    <section id="challenge4"
+             class="challenge">
+
+        <div class="challenge-layout">
+
+
+            <main class="card">
+
+                <h2>
+                    Challenge 4 — Independent Transfer
+                </h2>
+
+                <p>
+                    You are given two consecutive values from an exponential model.
+                    Determine the factor, percent change, equation, and a future value.
+                </p>
+
+
+                <div style="overflow-x: auto;">
+
+                    <table class="data-table">
+
+                        <tbody>
+
+                            <tr>
+                                <th>x</th>
+                                <td>0</td>
+                                <td>1</td>
+                            </tr>
+
+                            <tr>
+                                <th>f(x)</th>
+                                <td id="c4Y0"></td>
+                                <td id="c4Y1"></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="step-title">
+                    Step 1: Determine the Factor
+                </div>
+
+                <label for="c4Factor">
+                    What is b?
+                </label>
+
+                <input id="c4Factor"
+                       type="number"
+                       step="any">
+
+
+                <div class="step-title">
+                    Step 2: Determine the Percent Change
+                </div>
+
+                <label for="c4Percent">
+                    What percent change occurs each period?
+                </label>
+
+                <input id="c4Percent"
+                       type="number"
+                       step="any">
+
+
+                <label for="c4Type">
+                    Growth or decay?
+                </label>
+
+                <select id="c4Type">
+                    <option value="">Choose one</option>
+                    <option value="growth">Growth</option>
+                    <option value="decay">Decay</option>
+                </select>
+
+
+                <div class="step-title">
+                    Step 3: Create the Model
+                </div>
+
+                <div class="equation-builder">
+
+                    <span>f(x) =</span>
+
+                    <input id="c4ModelA"
+                           type="number"
+                           step="any"
+                           aria-label="Initial value in final model">
+
+                    <span>(</span>
+
+                    <input id="c4ModelB"
+                           type="number"
+                           step="any"
+                           aria-label="Factor in final model">
+
+                    <span>)<sup>x</sup></span>
+
+                </div>
+
+
+                <div class="step-title">
+                    Step 4: Extend the Model
+                </div>
+
+                <label for="c4Prediction">
+                    What is f(4)?
+                </label>
+
+                <input id="c4Prediction"
+                       type="number"
+                       step="0.01">
+
+
+                <p>
+                    <button class="primary-button"
+                            onclick="checkChallenge4()">
+                        Check My Final Challenge
+                    </button>
+                </p>
+
+                <div id="feedback4"
+                     class="feedback"
+                     aria-live="polite">
+                </div>
+
+            </main>
+
+
+            <aside class="card whiteboard-panel">
+
+                <h2>
+                    Show Your Work
+                </h2>
+
+                <div class="whiteboard-required">
+                    <strong>Required:</strong>
+                    Show how you found b, converted it to a percent,
+                    wrote the model, and calculated f(4).
+                </div>
+
+                <canvas id="whiteboard4"
+                        class="whiteboard"
+                        width="800"
+                        height="800"
+                        aria-label="Whiteboard for Challenge 4">
+                </canvas>
+
+                <div class="whiteboard-controls">
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(4,'pen')">
+                        Pen
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="setBoardTool(4,'eraser')">
+                        Eraser
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="undoBoard(4)">
+                        Undo
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            onclick="clearBoard(4)">
+                        Clear
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =====================================================
+     TEACHER REVIEW
+====================================================== -->
+
+<section id="teacherReview">
+
+    <div class="report-title">
+
+        <h1 style="margin: 0;">
+            Ready for Teacher Review
+        </h1>
+
+        <p style="margin: 6px 0 0;">
+            U2L2 — Percent Change &amp; Writing Exponential Models
+        </p>
+
+    </div>
+
+
+    <div class="card blue-card">
+
+        <strong>Teacher Review Required</strong>
+
+        <p style="margin-bottom: 0;">
+            Objective answers were verified by the activity.
+            The final score should be based on the complete evidence record,
+            including setup, whiteboard work, first attempts, revisions,
+            reasoning, and independence.
+        </p>
+
+    </div>
+
+
+    <div class="summary-grid">
+
+        <div class="summary-item">
+            <span id="reportStudent"
+                  class="summary-value"></span>
+            Student
+        </div>
+
+        <div class="summary-item">
+            <span id="reportTime"
+                  class="summary-value"></span>
+            Elapsed Time
+        </div>
+
+        <div class="summary-item">
+            <span id="reportChecks"
+                  class="summary-value"></span>
+            Total Checks
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-value">4 / 4</span>
+            Objective Tasks Verified
+        </div>
+
+    </div>
+
+
+    <div id="reportChallenges"></div>
+
+
+    <!-- RUBRIC -->
+
+    <div class="card">
+
+        <h2>
+            Teacher Prove It Scoring Guide
+        </h2>
+
+        <table class="rubric-table">
+
+            <tr>
+                <th>Score</th>
+                <th>Evidence</th>
+            </tr>
+
+            <tr>
+                <td><strong>6</strong></td>
+                <td>
+                    Independent mastery. Setup, calculations, models,
+                    and reasoning are accurate and clearly visible.
+                    Little or no corrective feedback was needed.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>5</strong></td>
+                <td>
+                    Proficient and mostly independent.
+                    Mathematical evidence is strong, with only a minor
+                    correction or small amount of feedback.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>4</strong></td>
+                <td>
+                    Developing proficiency. The student shows meaningful
+                    understanding but needs some feedback or revision.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>3</strong></td>
+                <td>
+                    Good-faith completed attempt showing some understanding,
+                    but substantial support or repeated feedback was needed.
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>0</strong></td>
+                <td>
+                    No usable evidence or no submission.
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <div class="card green-card">
+
+        <h2 style="margin-top: 0;">
+            Review Record
+        </h2>
+
+        <p>
+            <strong>Completed:</strong>
+            <span id="reportCompleted"></span>
+        </p>
+
+        <p>
+            <strong>Verification Code:</strong>
+            <span id="reportVerification"
+                  class="verification-code">
+            </span>
+        </p>
+
+        <p style="margin-bottom: 0;">
+            Status:
+            <strong>Ready for Teacher Review</strong>
+        </p>
+
+    </div>
+
+
+    <div class="print-area no-print">
+
+        <p>
+            <strong>
+                Save this complete response record as a PDF and upload it to Canvas.
+            </strong>
+        </p>
+
+        <button class="primary-button"
+                onclick="window.print()">
+            Print / Save Response Record as PDF
+        </button>
+
+    </div>
 
 </section>
 
 </div>
 
-<section id="review">
-
-<div class="hero">
-<h1 style="margin:0;">Ready for Teacher Review</h1>
-<p>U2L2 — Percent Change &amp; Writing Exponential Models</p>
-</div>
-
-<div class="card blue">
-<p><strong>Student:</strong> <span id="rName"></span></p>
-<p><strong>Elapsed Time:</strong> <span id="rTime"></span></p>
-<p><strong>Total Answer Checks:</strong> <span id="rChecks"></span></p>
-</div>
-
-<div id="report"></div>
-
-<div class="card">
-<h2>Teacher Prove It Scoring Guide</h2>
-
-<table class="report-table">
-<tr><th>6</th><td>Independent mastery with clear, correct work and little or no feedback.</td></tr>
-<tr><th>5</th><td>Proficient and mostly independent; minor correction or feedback.</td></tr>
-<tr><th>4</th><td>Developing proficiency with meaningful understanding and some feedback.</td></tr>
-<tr><th>3</th><td>Good-faith completed attempt showing some understanding but substantial support.</td></tr>
-<tr><th>0</th><td>No usable evidence or no submission.</td></tr>
-</table>
-</div>
-
-<div class="card green">
-<p><strong>Status:</strong> Ready for Teacher Review</p>
-<p><strong>Verification Code:</strong> <span id="code"></span></p>
-</div>
-
-<div class="card no-print" style="text-align:center;">
-<button class="primary" onclick="window.print()">Print / Save Response Record as PDF</button>
-</div>
-
-</section>
-
-</div>
 
 <script>
 "use strict";
 
-let startTime=0,totalChecks=0,completed=0;
-let p={};
 
-const rec={
-1:{checks:0,first:null,final:null,reason:""},
-2:{checks:0,first:null,final:null,reason:""},
-3:{checks:0,first:null,final:null,reason:""},
-4:{checks:0,first:null,final:null}
+/* =====================================================
+   STATE
+===================================================== */
+
+let startTime = null;
+let endTime = null;
+let completed = 0;
+let totalChecks = 0;
+
+let problems = {};
+
+
+const records = {
+
+    1: {
+        checks: 0,
+        first: null,
+        final: null,
+        reasoning: "",
+        firstWork: "",
+        finalWork: ""
+    },
+
+    2: {
+        checks: 0,
+        first: null,
+        final: null,
+        reasoning: "",
+        firstWork: "",
+        finalWork: ""
+    },
+
+    3: {
+        checks: 0,
+        first: null,
+        final: null,
+        reasoning: "",
+        firstWork: "",
+        finalWork: ""
+    },
+
+    4: {
+        checks: 0,
+        first: null,
+        final: null,
+        reasoning: "",
+        firstWork: "",
+        finalWork: ""
+    }
 };
 
-function rand(a){return a[Math.floor(Math.random()*a.length)]}
-function close(a,b){return Math.abs(a-b)<0.011}
-function money(v){return Math.round(v*100)/100}
 
-function makePercent(){
-const rate=rand([5,8,10,12,15,20,25]);
-const type=Math.random()<.5?"growth":"decay";
-const r=rate/100;
-return {rate,type,r,b:type==="growth"?1+r:1-r};
+/* =====================================================
+   MATH HELPERS
+===================================================== */
+
+function randomFrom(array) {
+
+    return array[
+        Math.floor(
+            Math.random() *
+            array.length
+        )
+    ];
 }
 
-function feedback(id,good,msg){
-const e=document.getElementById(id);
-e.className="feedback "+(good?"good":"bad");
-e.textContent=msg;
+
+function nearlyEqual(a, b, tolerance = 0.011) {
+
+    return Math.abs(a - b) <= tolerance;
 }
 
-function record(n,response){
-if(rec[n].first===null)rec[n].first=response;
-rec[n].checks++;
-totalChecks++;
+
+function round2(value) {
+
+    return Math.round(
+        value * 100
+    ) / 100;
 }
 
-function begin(){
-const n=document.getElementById("name").value.trim();
-if(n.split(/\s+/).length<2){alert("Enter your first and last name.");return}
-startTime=Date.now();
-document.getElementById("start").classList.add("hidden");
-document.getElementById("activity").classList.remove("hidden");
 
-p.one=makePercent();
+function makePercentProblem() {
 
-const initial2=rand([400,500,600,800,1000,1200]);
-const q2=makePercent();
-p.two={...q2,a:initial2,future:money(initial2*Math.pow(q2.b,3))};
+    const rate =
+        randomFrom([
+            5,
+            8,
+            10,
+            12,
+            15,
+            20,
+            25
+        ]);
 
-const initial3=rand([300,600,900,1500,2500]);
-const q3=makePercent();
-p.three={...q3,a:initial3};
 
-const initial4=rand([200,400,500,800,1000]);
-const q4=makePercent();
-p.four={...q4,a:initial4,y1:money(initial4*q4.b)};
+    const type =
+        Math.random() < 0.5
+            ? "growth"
+            : "decay";
 
-document.getElementById("c1Prompt").innerHTML=
-`A quantity experiences a <strong>${p.one.rate}% ${p.one.type==="growth"?"increase":"decrease"}</strong> each period.`;
 
-document.getElementById("c2Prompt").innerHTML=
-`A quantity begins at <strong>${p.two.a}</strong> and ${p.two.type==="growth"?"increases":"decreases"} by <strong>${p.two.rate}% each period</strong>. Write the model and find its value after 3 periods.`;
+    const decimal =
+        rate / 100;
 
-document.getElementById("c3Model").innerHTML=
-`f(x)=${p.three.a}(${p.three.b.toFixed(2)})<sup>x</sup>`;
 
-document.getElementById("c4Y0").textContent=p.four.a;
-document.getElementById("c4Y1").textContent=p.four.y1;
+    const factor =
+        type === "growth"
+            ? 1 + decimal
+            : 1 - decimal;
+
+
+    return {
+        rate: rate,
+        type: type,
+        decimal: decimal,
+        factor: round2(factor)
+    };
 }
 
-function advance(n){
-completed++;
-document.getElementById("c"+n).classList.remove("active");
-if(n<4)document.getElementById("c"+(n+1)).classList.add("active");
-document.getElementById("progressText").innerHTML="<strong>Progress:</strong> "+completed+" of 4";
-document.getElementById("bar").style.width=(completed/4*100)+"%";
+
+/* =====================================================
+   PROBLEM GENERATION
+===================================================== */
+
+function generateProblems() {
+
+    /* Challenge 1 */
+
+    problems[1] =
+        makePercentProblem();
+
+
+    /* Challenge 2 */
+
+    const p2 =
+        makePercentProblem();
+
+    const contexts = [
+
+        {
+            noun: "a wildlife population",
+            initial: randomFrom([400, 600, 800, 1200]),
+            unit: "animals",
+            period: "year"
+        },
+
+        {
+            noun: "an online channel",
+            initial: randomFrom([500, 800, 1000, 1500]),
+            unit: "followers",
+            period: "month"
+        },
+
+        {
+            noun: "a savings balance",
+            initial: randomFrom([500, 800, 1000, 1200]),
+            unit: "dollars",
+            period: "year"
+        },
+
+        {
+            noun: "the value of a device",
+            initial: randomFrom([800, 1000, 1200, 1600]),
+            unit: "dollars",
+            period: "year"
+        }
+
+    ];
+
+
+    const context2 =
+        randomFrom(contexts);
+
+
+    const periods2 =
+        randomFrom([3, 4]);
+
+
+    problems[2] = {
+
+        ...p2,
+
+        ...context2,
+
+        periods: periods2,
+
+        prediction:
+            round2(
+                context2.initial *
+                Math.pow(
+                    p2.factor,
+                    periods2
+                )
+            )
+    };
+
+
+    /* Challenge 3 */
+
+    const p3 =
+        makePercentProblem();
+
+
+    problems[3] = {
+
+        ...p3,
+
+        initial:
+            randomFrom([
+                300,
+                500,
+                750,
+                900,
+                1200,
+                2500
+            ])
+    };
+
+
+    /* Challenge 4 */
+
+    const p4 =
+        makePercentProblem();
+
+
+    const initial4 =
+        randomFrom([
+            400,
+            500,
+            800,
+            1000,
+            1200
+        ]);
+
+
+    problems[4] = {
+
+        ...p4,
+
+        initial: initial4,
+
+        second:
+            round2(
+                initial4 *
+                p4.factor
+            ),
+
+        prediction:
+            round2(
+                initial4 *
+                Math.pow(
+                    p4.factor,
+                    4
+                )
+            )
+    };
+
+
+    renderProblems();
 }
 
-function check1(){
-const rate=Number(document.getElementById("c1Rate").value);
-const factor=Number(document.getElementById("c1Factor").value);
-const reason=document.getElementById("c1Reason").value.trim();
 
-if(!Number.isFinite(rate)||!Number.isFinite(factor)||reason.length<3){
-feedback("f1",false,"Complete all three parts before checking.");return;
+/* =====================================================
+   RENDER PROBLEMS
+===================================================== */
+
+function renderProblems() {
+
+    /* Challenge 1 */
+
+    document.getElementById(
+        "c1Prompt"
+    ).innerHTML =
+
+        `A quantity experiences a
+        <strong>${problems[1].rate}% ${problems[1].type === "growth" ? "increase" : "decrease"}</strong>
+        each period.`;
+
+
+    /* Challenge 2 */
+
+    document.getElementById(
+        "c2Prompt"
+    ).innerHTML =
+
+        `${problems[2].noun} begins with
+        <strong>${problems[2].initial} ${problems[2].unit}</strong>
+        and
+        <strong>${problems[2].type === "growth" ? "increases" : "decreases"}
+        by ${problems[2].rate}% each ${problems[2].period}</strong>.`;
+
+
+    document.getElementById(
+        "c2PredictionPrompt"
+    ).innerHTML =
+
+        `Use your model to predict the value after
+        <strong>${problems[2].periods} ${problems[2].period}${problems[2].periods === 1 ? "" : "s"}</strong>.`;
+
+
+    /* Challenge 3 */
+
+    document.getElementById(
+        "c3Model"
+    ).innerHTML =
+
+        `f(x) =
+        ${problems[3].initial}
+        (${problems[3].factor.toFixed(2)})<sup>x</sup>`;
+
+
+    /* Challenge 4 */
+
+    document.getElementById(
+        "c4Y0"
+    ).textContent =
+        problems[4].initial;
+
+
+    document.getElementById(
+        "c4Y1"
+    ).textContent =
+        problems[4].second;
 }
 
-const response=`decimal rate=${rate}; factor=${factor}`;
-record(1,response);
 
-if(close(rate,p.one.r)&&close(factor,p.one.b)){
-rec[1].final=response;rec[1].reason=reason;
-feedback("f1",true,"Verified.");
-setTimeout(()=>advance(1),400);
-}else{
-feedback("f1",false,rec[1].checks===1?
-"Convert the percent to a decimal first.":
-"Growth uses 1+r. Decay uses 1-r.");
-}
-}
+/* =====================================================
+   WHITEBOARD SYSTEM
+===================================================== */
 
-function normalizeModel(s){
-return s.toLowerCase().replace(/\s+/g,"").replace(/\*\*/g,"^");
-}
+const boards = {};
 
-function check2(){
-const a=Number(document.getElementById("c2A").value);
-const b=Number(document.getElementById("c2B").value);
-const setup=document.getElementById("c2Setup").value.trim();
-const future=Number(document.getElementById("c2Future").value);
-const reason=document.getElementById("c2Reason").value.trim();
 
-if(!Number.isFinite(a)||!Number.isFinite(b)||!Number.isFinite(future)||setup.length<5||reason.length<2){
-feedback("f2",false,"Complete the model, prediction, and reasoning first.");return;
-}
+function initializeBoard(number) {
 
-const response=`a=${a}; b=${b}; model=${setup}; after 3=${future}`;
-record(2,response);
+    const canvas =
+        document.getElementById(
+            "whiteboard" + number
+        );
 
-const setupCompact=normalizeModel(setup);
-const containsA=setupCompact.includes(String(p.two.a));
-const containsB=setupCompact.includes(String(Number(p.two.b.toFixed(2))));
 
-if(close(a,p.two.a)&&close(b,p.two.b)&&close(future,p.two.future)&&containsA&&containsB){
-rec[2].final=response;rec[2].reason=reason;
-feedback("f2",true,"Model and prediction verified.");
-setTimeout(()=>advance(2),400);
-}else{
-feedback("f2",false,rec[2].checks===1?
-"Check the initial value and percent-to-factor conversion.":
-"Then evaluate a(b)^3 for the prediction.");
-}
-}
+    const ctx =
+        canvas.getContext("2d");
 
-function check3(){
-const initial=Number(document.getElementById("c3Initial").value);
-const percent=Number(document.getElementById("c3Percent").value);
-const type=document.getElementById("c3Type").value;
-const reason=document.getElementById("c3Reason").value.trim();
 
-if(!Number.isFinite(initial)||!Number.isFinite(percent)||!type||reason.length<3){
-feedback("f3",false,"Complete all parts before checking.");return;
-}
+    boards[number] = {
 
-const response=`initial=${initial}; percent=${percent}%; type=${type}`;
-record(3,response);
+        canvas: canvas,
+        ctx: ctx,
+        tool: "pen",
+        drawing: false,
+        currentStroke: [],
+        strokes: []
+    };
 
-if(close(initial,p.three.a)&&close(percent,p.three.rate)&&type===p.three.type){
-rec[3].final=response;rec[3].reason=reason;
-feedback("f3",true,"Interpretation verified.");
-setTimeout(()=>advance(3),400);
-}else{
-feedback("f3",false,rec[3].checks===1?
-"Compare b to 1.":
-"For growth, percent=(b-1)×100. For decay, percent=(1-b)×100.");
-}
-}
 
-function check4(){
-const factor=Number(document.getElementById("c4Factor").value);
-const percent=Number(document.getElementById("c4Percent").value);
-const type=document.getElementById("c4Type").value;
-const model=document.getElementById("c4Model").value.trim();
+    drawBoardBackground(number);
 
-if(!Number.isFinite(factor)||!Number.isFinite(percent)||!type||model.length<5){
-feedback("f4",false,"Complete every part before checking.");return;
-}
 
-const response=`factor=${factor}; percent=${percent}%; type=${type}; model=${model}`;
-record(4,response);
+    canvas.addEventListener(
+        "mousedown",
+        function (event) {
+            startBoardStroke(
+                number,
+                event
+            );
+        }
+    );
 
-const m=normalizeModel(model);
-const modelOkay=m.includes(String(p.four.a)) &&
-m.includes(String(Number(p.four.b.toFixed(2))));
 
-if(close(factor,p.four.b)&&close(percent,p.four.rate)&&type===p.four.type&&modelOkay){
-rec[4].final=response;
-feedback("f4",true,"Final challenge verified.");
-setTimeout(finish,400);
-}else{
-feedback("f4",false,rec[4].checks===1?
-"Find the ratio y₁ ÷ y₀ first.":
-"Use that factor to determine the percent change and equation.");
-}
-}
+    canvas.addEventListener(
+        "mousemove",
+        function (event) {
+            moveBoardStroke(
+                number,
+                event
+            );
+        }
+    );
 
-function finish(){
-completed=4;
-document.getElementById("activity").classList.add("hidden");
-document.getElementById("review").style.display="block";
 
-const elapsed=Math.floor((Date.now()-startTime)/1000);
-document.getElementById("rName").textContent=document.getElementById("name").value;
-document.getElementById("rTime").textContent=Math.floor(elapsed/60)+" min "+(elapsed%60)+" sec";
-document.getElementById("rChecks").textContent=totalChecks;
+    window.addEventListener(
+        "mouseup",
+        function () {
+            stopBoardStroke(number);
+        }
+    );
 
-let html="";
 
-for(let i=1;i<=4;i++){
-html+=`
-<div class="card">
-<h2>Challenge ${i}</h2>
-<table class="report-table">
-<tr><th>First Attempt</th><td>${rec[i].first||""}</td></tr>
-<tr><th>Final / Revised Response</th><td>${rec[i].final||""}</td></tr>
-${i<4?`<tr><th>Reasoning</th><td>${rec[i].reason||""}</td></tr>`:""}
-<tr><th>Answer Checks</th><td>${rec[i].checks}</td></tr>
-</table>
-</div>`;
+    canvas.addEventListener(
+        "touchstart",
+        function (event) {
+            startBoardStroke(
+                number,
+                event
+            );
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    canvas.addEventListener(
+        "touchmove",
+        function (event) {
+            moveBoardStroke(
+                number,
+                event
+            );
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    canvas.addEventListener(
+        "touchend",
+        function () {
+            stopBoardStroke(number);
+        }
+    );
 }
 
-document.getElementById("report").innerHTML=html;
 
-const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-let code="MOD-";
-for(let i=0;i<8;i++)code+=chars[Math.floor(Math.random()*chars.length)];
-document.getElementById("code").textContent=code;
+function drawBoardBackground(number) {
+
+    const board =
+        boards[number];
+
+
+    const ctx =
+        board.ctx;
+
+
+    const canvas =
+        board.canvas;
+
+
+    ctx.fillStyle =
+        "#ffffff";
+
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    ctx.strokeStyle =
+        "#e6edf1";
+
+
+    ctx.lineWidth =
+        1;
+
+
+    for (
+        let y = 50;
+        y < canvas.height;
+        y += 50
+    ) {
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            canvas.width,
+            y
+        );
+
+        ctx.stroke();
+    }
 }
+
+
+function boardPoint(number, event) {
+
+    const canvas =
+        boards[number].canvas;
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const source =
+        event.touches
+            ? event.touches[0]
+            : event;
+
+
+    return {
+
+        x:
+            (
+                source.clientX -
+                rect.left
+            ) *
+            (
+                canvas.width /
+                rect.width
+            ),
+
+        y:
+            (
+                source.clientY -
+                rect.top
+            ) *
+            (
+                canvas.height /
+                rect.height
+            )
+    };
+}
+
+
+function startBoardStroke(number, event) {
+
+    event.preventDefault();
+
+
+    const board =
+        boards[number];
+
+
+    board.drawing =
+        true;
+
+
+    const point =
+        boardPoint(
+            number,
+            event
+        );
+
+
+    board.currentStroke = [{
+
+        x: point.x,
+        y: point.y,
+        tool: board.tool
+    }];
+}
+
+
+function moveBoardStroke(number, event) {
+
+    const board =
+        boards[number];
+
+
+    if (!board.drawing) {
+        return;
+    }
+
+
+    event.preventDefault();
+
+
+    const point =
+        boardPoint(
+            number,
+            event
+        );
+
+
+    const previous =
+        board.currentStroke[
+            board.currentStroke.length - 1
+        ];
+
+
+    const next = {
+
+        x: point.x,
+        y: point.y,
+        tool: board.tool
+    };
+
+
+    drawBoardSegment(
+        number,
+        previous,
+        next
+    );
+
+
+    board.currentStroke.push(
+        next
+    );
+}
+
+
+function stopBoardStroke(number) {
+
+    const board =
+        boards[number];
+
+
+    if (!board.drawing) {
+        return;
+    }
+
+
+    board.drawing =
+        false;
+
+
+    if (
+        board.currentStroke.length > 1
+    ) {
+
+        board.strokes.push(
+            board.currentStroke
+        );
+    }
+
+
+    board.currentStroke = [];
+}
+
+
+function drawBoardSegment(
+    number,
+    first,
+    second
+) {
+
+    const ctx =
+        boards[number].ctx;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        first.x,
+        first.y
+    );
+
+
+    ctx.lineTo(
+        second.x,
+        second.y
+    );
+
+
+    ctx.lineCap =
+        "round";
+
+
+    if (
+        second.tool === "eraser"
+    ) {
+
+        ctx.lineWidth =
+            24;
+
+        ctx.strokeStyle =
+            "#ffffff";
+
+    } else {
+
+        ctx.lineWidth =
+            5;
+
+        ctx.strokeStyle =
+            "#0f2d44";
+    }
+
+
+    ctx.stroke();
+}
+
+
+function setBoardTool(
+    number,
+    tool
+) {
+
+    boards[number].tool =
+        tool;
+}
+
+
+function undoBoard(number) {
+
+    const board =
+        boards[number];
+
+
+    if (
+        board.strokes.length === 0
+    ) {
+        return;
+    }
+
+
+    board.strokes.pop();
+
+
+    redrawBoard(number);
+}
+
+
+function clearBoard(number) {
+
+    boards[number].strokes = [];
+
+    boards[number].currentStroke = [];
+
+
+    drawBoardBackground(number);
+}
+
+
+function redrawBoard(number) {
+
+    drawBoardBackground(number);
+
+
+    const board =
+        boards[number];
+
+
+    board.strokes.forEach(
+        function (stroke) {
+
+            for (
+                let i = 1;
+                i < stroke.length;
+                i++
+            ) {
+
+                drawBoardSegment(
+                    number,
+                    stroke[i - 1],
+                    stroke[i]
+                );
+            }
+        }
+    );
+}
+
+
+function hasRequiredBoardWork(number) {
+
+    const penStrokes =
+        boards[number].strokes.filter(
+            function (stroke) {
+
+                return (
+                    stroke.length > 2 &&
+                    stroke[0].tool === "pen"
+                );
+            }
+        );
+
+
+    return penStrokes.length >= 2;
+}
+
+
+function captureBoard(number) {
+
+    return boards[number].canvas.toDataURL(
+        "image/png"
+    );
+}
+
+
+/* =====================================================
+   FEEDBACK
+===================================================== */
+
+function setFeedback(
+    number,
+    correct,
+    message
+) {
+
+    const box =
+        document.getElementById(
+            "feedback" + number
+        );
+
+
+    box.className =
+        "feedback " +
+        (
+            correct
+                ? "correct"
+                : "incorrect"
+        );
+
+
+    box.textContent =
+        message;
+}
+
+
+function recordFirstAttempt(
+    number,
+    response
+) {
+
+    if (
+        records[number].first === null
+    ) {
+
+        records[number].first =
+            response;
+
+
+        records[number].firstWork =
+            captureBoard(number);
+    }
+}
+
+
+function recordCheck(number) {
+
+    records[number].checks++;
+
+    totalChecks++;
+}
+
+
+/* =====================================================
+   CHALLENGE 1
+===================================================== */
+
+function checkChallenge1() {
+
+    const decimal =
+        Number(
+            document.getElementById(
+                "c1Decimal"
+            ).value
+        );
+
+
+    const factor =
+        Number(
+            document.getElementById(
+                "c1Factor"
+            ).value
+        );
+
+
+    const reasoning =
+        document.getElementById(
+            "c1Reasoning"
+        ).value.trim();
+
+
+    if (
+        !Number.isFinite(decimal) ||
+        !Number.isFinite(factor) ||
+        reasoning.length < 3
+    ) {
+
+        setFeedback(
+            1,
+            false,
+            "Complete the decimal rate, factor, and Reasoning Check first."
+        );
+
+        return;
+    }
+
+
+    if (
+        !hasRequiredBoardWork(1)
+    ) {
+
+        setFeedback(
+            1,
+            false,
+            "Show your percent-to-decimal and factor work on the whiteboard before checking."
+        );
+
+        return;
+    }
+
+
+    const response =
+
+        `decimal rate=${decimal}; factor=${factor}`;
+
+
+    recordFirstAttempt(
+        1,
+        response
+    );
+
+
+    recordCheck(1);
+
+
+    const correct =
+
+        nearlyEqual(
+            decimal,
+            problems[1].decimal
+        ) &&
+
+        nearlyEqual(
+            factor,
+            problems[1].factor
+        );
+
+
+    if (correct) {
+
+        records[1].final =
+            response;
+
+
+        records[1].reasoning =
+            reasoning;
+
+
+        records[1].finalWork =
+            captureBoard(1);
+
+
+        setFeedback(
+            1,
+            true,
+            "Objective answers verified. Your work and reasoning are saved for teacher review."
+        );
+
+
+        setTimeout(
+            function () {
+                advance(1);
+            },
+            500
+        );
+
+    } else {
+
+        const hint =
+
+            records[1].checks === 1
+
+                ? "Recheck the percent-to-decimal conversion."
+
+                : (
+                    problems[1].type === "growth"
+
+                        ? "This is an increase. Think about how the decimal rate combines with 1."
+
+                        : "This is a decrease. Think about how the decimal rate combines with 1."
+                );
+
+
+        setFeedback(
+            1,
+            false,
+            hint
+        );
+    }
+}
+
+
+/* =====================================================
+   CHALLENGE 2
+===================================================== */
+
+function checkChallenge2() {
+
+    const a =
+        Number(
+            document.getElementById(
+                "c2A"
+            ).value
+        );
+
+
+    const b =
+        Number(
+            document.getElementById(
+                "c2B"
+            ).value
+        );
+
+
+    const modelA =
+        Number(
+            document.getElementById(
+                "c2ModelA"
+            ).value
+        );
+
+
+    const modelB =
+        Number(
+            document.getElementById(
+                "c2ModelB"
+            ).value
+        );
+
+
+    const prediction =
+        Number(
+            document.getElementById(
+                "c2Prediction"
+            ).value
+        );
+
+
+    const reasoning =
+        document.getElementById(
+            "c2Reasoning"
+        ).value.trim();
+
+
+    if (
+        !Number.isFinite(a) ||
+        !Number.isFinite(b) ||
+        !Number.isFinite(modelA) ||
+        !Number.isFinite(modelB) ||
+        !Number.isFinite(prediction) ||
+        reasoning.length < 3
+    ) {
+
+        setFeedback(
+            2,
+            false,
+            "Complete the model, prediction, and short reasoning response first."
+        );
+
+        return;
+    }
+
+
+    if (
+        !hasRequiredBoardWork(2)
+    ) {
+
+        setFeedback(
+            2,
+            false,
+            "Use the whiteboard to show the factor calculation, model setup, and prediction work before checking."
+        );
+
+        return;
+    }
+
+
+    const response =
+
+        `a=${a}; b=${b}; model=${modelA}(${modelB})^x; prediction=${prediction}`;
+
+
+    recordFirstAttempt(
+        2,
+        response
+    );
+
+
+    recordCheck(2);
+
+
+    const correct =
+
+        nearlyEqual(
+            a,
+            problems[2].initial
+        ) &&
+
+        nearlyEqual(
+            b,
+            problems[2].factor
+        ) &&
+
+        nearlyEqual(
+            modelA,
+            problems[2].initial
+        ) &&
+
+        nearlyEqual(
+            modelB,
+            problems[2].factor
+        ) &&
+
+        nearlyEqual(
+            prediction,
+            problems[2].prediction,
+            0.02
+        );
+
+
+    if (correct) {
+
+        records[2].final =
+            response;
+
+
+        records[2].reasoning =
+            reasoning;
+
+
+        records[2].finalWork =
+            captureBoard(2);
+
+
+        setFeedback(
+            2,
+            true,
+            "Model and prediction verified. Your mathematical work is saved."
+        );
+
+
+        setTimeout(
+            function () {
+                advance(2);
+            },
+            500
+        );
+
+    } else {
+
+        const hint =
+
+            records[2].checks === 1
+
+                ? "Check the initial value and the percent-to-factor conversion."
+
+                : `Then evaluate your model at x=${problems[2].periods}.`;
+
+
+        setFeedback(
+            2,
+            false,
+            hint
+        );
+    }
+}
+
+
+/* =====================================================
+   CHALLENGE 3
+===================================================== */
+
+function checkChallenge3() {
+
+    const initial =
+        Number(
+            document.getElementById(
+                "c3Initial"
+            ).value
+        );
+
+
+    const factor =
+        Number(
+            document.getElementById(
+                "c3Factor"
+            ).value
+        );
+
+
+    const percent =
+        Number(
+            document.getElementById(
+                "c3Percent"
+            ).value
+        );
+
+
+    const type =
+        document.getElementById(
+            "c3Type"
+        ).value;
+
+
+    const reasoning =
+        document.getElementById(
+            "c3Reasoning"
+        ).value.trim();
+
+
+    if (
+        !Number.isFinite(initial) ||
+        !Number.isFinite(factor) ||
+        !Number.isFinite(percent) ||
+        type === "" ||
+        reasoning.length < 3
+    ) {
+
+        setFeedback(
+            3,
+            false,
+            "Complete every part and the short Reasoning Check before checking."
+        );
+
+        return;
+    }
+
+
+    if (
+        !hasRequiredBoardWork(3)
+    ) {
+
+        setFeedback(
+            3,
+            false,
+            "Show the calculation used to recover the percent change on the whiteboard before checking."
+        );
+
+        return;
+    }
+
+
+    const response =
+
+        `initial=${initial}; factor=${factor}; percent=${percent}%; type=${type}`;
+
+
+    recordFirstAttempt(
+        3,
+        response
+    );
+
+
+    recordCheck(3);
+
+
+    const correct =
+
+        nearlyEqual(
+            initial,
+            problems[3].initial
+        ) &&
+
+        nearlyEqual(
+            factor,
+            problems[3].factor
+        ) &&
+
+        nearlyEqual(
+            percent,
+            problems[3].rate
+        ) &&
+
+        type ===
+            problems[3].type;
+
+
+    if (correct) {
+
+        records[3].final =
+            response;
+
+
+        records[3].reasoning =
+            reasoning;
+
+
+        records[3].finalWork =
+            captureBoard(3);
+
+
+        setFeedback(
+            3,
+            true,
+            "Interpretation verified. Your whiteboard work and reasoning are saved."
+        );
+
+
+        setTimeout(
+            function () {
+                advance(3);
+            },
+            500
+        );
+
+    } else {
+
+        const hint =
+
+            records[3].checks === 1
+
+                ? "Compare the factor b to 1 first."
+
+                : "Find the distance between b and 1, then convert that decimal to a percent.";
+
+
+        setFeedback(
+            3,
+            false,
+            hint
+        );
+    }
+}
+
+
+/* =====================================================
+   CHALLENGE 4
+===================================================== */
+
+function checkChallenge4() {
+
+    const factor =
+        Number(
+            document.getElementById(
+                "c4Factor"
+            ).value
+        );
+
+
+    const percent =
+        Number(
+            document.getElementById(
+                "c4Percent"
+            ).value
+        );
+
+
+    const type =
+        document.getElementById(
+            "c4Type"
+        ).value;
+
+
+    const modelA =
+        Number(
+            document.getElementById(
+                "c4ModelA"
+            ).value
+        );
+
+
+    const modelB =
+        Number(
+            document.getElementById(
+                "c4ModelB"
+            ).value
+        );
+
+
+    const prediction =
+        Number(
+            document.getElementById(
+                "c4Prediction"
+            ).value
+        );
+
+
+    if (
+        !Number.isFinite(factor) ||
+        !Number.isFinite(percent) ||
+        type === "" ||
+        !Number.isFinite(modelA) ||
+        !Number.isFinite(modelB) ||
+        !Number.isFinite(prediction)
+    ) {
+
+        setFeedback(
+            4,
+            false,
+            "Complete every part of the final challenge before checking."
+        );
+
+        return;
+    }
+
+
+    if (
+        !hasRequiredBoardWork(4)
+    ) {
+
+        setFeedback(
+            4,
+            false,
+            "Show how you found the factor, percent, model, and f(4) on the whiteboard before checking."
+        );
+
+        return;
+    }
+
+
+    const response =
+
+        `factor=${factor}; percent=${percent}%; type=${type}; model=${modelA}(${modelB})^x; f(4)=${prediction}`;
+
+
+    recordFirstAttempt(
+        4,
+        response
+    );
+
+
+    recordCheck(4);
+
+
+    const correct =
+
+        nearlyEqual(
+            factor,
+            problems[4].factor
+        ) &&
+
+        nearlyEqual(
+            percent,
+            problems[4].rate
+        ) &&
+
+        type ===
+            problems[4].type &&
+
+        nearlyEqual(
+            modelA,
+            problems[4].initial
+        ) &&
+
+        nearlyEqual(
+            modelB,
+            problems[4].factor
+        ) &&
+
+        nearlyEqual(
+            prediction,
+            problems[4].prediction,
+            0.02
+        );
+
+
+    if (correct) {
+
+        records[4].final =
+            response;
+
+
+        records[4].finalWork =
+            captureBoard(4);
+
+
+        setFeedback(
+            4,
+            true,
+            "Final transfer task verified. Your evidence is ready for teacher review."
+        );
+
+
+        setTimeout(
+            finishAssessment,
+            500
+        );
+
+    } else {
+
+        const hint =
+
+            records[4].checks === 1
+
+                ? "Start by finding the ratio f(1) ÷ f(0)."
+
+                : "Use that ratio as b, compare b to 1 for the percent change, then evaluate the model at x=4.";
+
+
+        setFeedback(
+            4,
+            false,
+            hint
+        );
+    }
+}
+
+
+/* =====================================================
+   ADVANCE
+===================================================== */
+
+function advance(number) {
+
+    completed++;
+
+
+    updateProgress();
+
+
+    document.getElementById(
+        "challenge" + number
+    ).classList.remove(
+        "active"
+    );
+
+
+    const next =
+        number + 1;
+
+
+    document.getElementById(
+        "challenge" + next
+    ).classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "challenge" + next
+    ).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function updateProgress() {
+
+    document.getElementById(
+        "progressText"
+    ).innerHTML =
+
+        "<strong>Progress:</strong> " +
+        completed +
+        " of 4 challenges completed";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+
+        (
+            completed /
+            4 *
+            100
+        ) +
+        "%";
+}
+
+
+/* =====================================================
+   FINISH / REPORT
+===================================================== */
+
+function finishAssessment() {
+
+    completed =
+        4;
+
+
+    updateProgress();
+
+
+    endTime =
+        Date.now();
+
+
+    document.getElementById(
+        "activity"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    buildReport();
+
+
+    const review =
+        document.getElementById(
+            "teacherReview"
+        );
+
+
+    review.style.display =
+        "block";
+
+
+    review.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function formatElapsed(milliseconds) {
+
+    const seconds =
+        Math.floor(
+            milliseconds /
+            1000
+        );
+
+
+    const minutes =
+        Math.floor(
+            seconds /
+            60
+        );
+
+
+    return (
+        minutes +
+        " min " +
+        (
+            seconds %
+            60
+        ) +
+        " sec"
+    );
+}
+
+
+function createVerificationCode() {
+
+    const chars =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+
+    let code =
+        "MOD-";
+
+
+    for (
+        let i = 0;
+        i < 8;
+        i++
+    ) {
+
+        code +=
+            chars[
+                Math.floor(
+                    Math.random() *
+                    chars.length
+                )
+            ];
+    }
+
+
+    return code;
+}
+
+
+function reportChallengeHTML(
+    number,
+    title,
+    correctSolution
+) {
+
+    const record =
+        records[number];
+
+
+    return `
+        <div class="report-problem">
+
+            <h2>
+                Challenge ${number} — ${title}
+            </h2>
+
+            <table class="report-table">
+
+                <tr>
+                    <th>First Submitted Response</th>
+                    <td>${record.first || ""}</td>
+                </tr>
+
+                <tr>
+                    <th>Final / Revised Response</th>
+                    <td>${record.final || ""}</td>
+                </tr>
+
+                ${
+                    number < 4
+                    ?
+                    `
+                    <tr>
+                        <th>Short Reasoning</th>
+                        <td>${record.reasoning || ""}</td>
+                    </tr>
+                    `
+                    :
+                    ""
+                }
+
+                <tr>
+                    <th>Correct Mathematical Result</th>
+                    <td>${correctSolution}</td>
+                </tr>
+
+                <tr>
+                    <th>Answer Checks Used</th>
+                    <td>${record.checks}</td>
+                </tr>
+
+            </table>
+
+
+            <div class="evidence-grid">
+
+                <div class="evidence-box">
+
+                    <h3>
+                        Whiteboard at First Check
+                    </h3>
+
+                    <img src="${record.firstWork}"
+                         class="work-image"
+                         alt="Student whiteboard work at first answer check for Challenge ${number}">
+
+                </div>
+
+
+                <div class="evidence-box">
+
+                    <h3>
+                        Final / Revised Whiteboard
+                    </h3>
+
+                    <img src="${record.finalWork}"
+                         class="work-image"
+                         alt="Student final whiteboard work for Challenge ${number}">
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+function buildReport() {
+
+    document.getElementById(
+        "reportStudent"
+    ).textContent =
+
+        document.getElementById(
+            "studentName"
+        ).value.trim();
+
+
+    document.getElementById(
+        "reportTime"
+    ).textContent =
+
+        formatElapsed(
+            endTime -
+            startTime
+        );
+
+
+    document.getElementById(
+        "reportChecks"
+    ).textContent =
+        totalChecks;
+
+
+    const challenge1Solution =
+
+        `Decimal rate = ${problems[1].decimal}; ` +
+        `factor = ${problems[1].factor}`;
+
+
+    const challenge2Solution =
+
+        `f(x) = ${problems[2].initial}` +
+        `(${problems[2].factor})^x; ` +
+        `prediction after ${problems[2].periods} periods = ` +
+        `${problems[2].prediction}`;
+
+
+    const challenge3Solution =
+
+        `Initial value = ${problems[3].initial}; ` +
+        `factor = ${problems[3].factor}; ` +
+        `${problems[3].rate}% ${problems[3].type}`;
+
+
+    const challenge4Solution =
+
+        `factor = ${problems[4].factor}; ` +
+        `${problems[4].rate}% ${problems[4].type}; ` +
+        `f(x)=${problems[4].initial}(${problems[4].factor})^x; ` +
+        `f(4)=${problems[4].prediction}`;
+
+
+    document.getElementById(
+        "reportChallenges"
+    ).innerHTML =
+
+        reportChallengeHTML(
+            1,
+            "Build the Multiplier",
+            challenge1Solution
+        ) +
+
+        reportChallengeHTML(
+            2,
+            "Build a Model From a Situation",
+            challenge2Solution
+        ) +
+
+        reportChallengeHTML(
+            3,
+            "Interpret the Model",
+            challenge3Solution
+        ) +
+
+        reportChallengeHTML(
+            4,
+            "Independent Transfer",
+            challenge4Solution
+        );
+
+
+    document.getElementById(
+        "reportCompleted"
+    ).textContent =
+
+        new Date(
+            endTime
+        ).toLocaleString();
+
+
+    document.getElementById(
+        "reportVerification"
+    ).textContent =
+
+        createVerificationCode();
+}
+
+
+/* =====================================================
+   BEGIN
+===================================================== */
+
+document.getElementById(
+    "beginButton"
+).addEventListener(
+    "click",
+    function () {
+
+        const name =
+            document.getElementById(
+                "studentName"
+            ).value.trim();
+
+
+        const nameParts =
+            name
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+        if (
+            nameParts.length < 2
+        ) {
+
+            alert(
+                "Please enter your first and last name before beginning."
+            );
+
+            return;
+        }
+
+
+        startTime =
+            Date.now();
+
+
+        document.getElementById(
+            "startScreen"
+        ).classList.add(
+            "hidden"
+        );
+
+
+        document.getElementById(
+            "activity"
+        ).classList.remove(
+            "hidden"
+        );
+
+
+        generateProblems();
+
+
+        for (
+            let i = 1;
+            i <= 4;
+            i++
+        ) {
+
+            initializeBoard(i);
+        }
+
+
+        updateProgress();
+    }
+);
 </script>
 
 </body>
